@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+  <header class="header">
+    <img src="./images/Vector.png" class="header__logo" alt="Логотип сайта">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__container">
+        <img src="./images/Cousteau.jpg" class="profile__avatar" alt="аватар">
+        <div class="profile__info">
+          <div class="profile__wrap">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button" title="Изменить профиль" aria-label="Изменить"></button>
+          </div>
+          <p class="profile__profession">Исследователь океана</p>
+        </div>
+      </div>
+      <button type="button" class="profile__add-button" title="Добавить фото" aria-label="Добавить"></button>
+    </section>
+    <section class="photos">
+        <ul class="grid-photos">
+            <li class="grid-item">
+                <img src="./images/Карачаево.jpg" alt="Карачаевск" class="grid-item__image">
+                <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Карачаевск</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div>
+            </li>
+            <li class="grid-item"><img src="./images/Эльбрус.png" alt="Эльбрус" class="grid-item__image">
+              <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Гора Эльбрус</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div></li>
+            <li class="grid-item"><img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
+              <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Домбай</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div>
+            </li>
+            <li class="grid-item"><img src="./images/Эльбрус.png" alt="Эльбрус" class="grid-item__image">
+              <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Гора Эльбрус</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div>
+            </li>
+            <li class="grid-item"><img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
+              <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Домбай</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div>
+            </li>
+            <li class="grid-item"><img src="./images/Карачаево.jpg" alt="Карачаево-Черкессия" class="grid-item__image">
+              <div class="grid-item__wrap">
+                <h3 class="grid-item__name">Карачаево-Черкессия</h3>
+                <button class="grid-item__like grid-item__like-active"><img src="./images/like.svg" alt="Лайк"></button>
+              </div>
+            </li>
+        </ul>
+    </section>
+  </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+     <div class="popup">
+      <div class="popup__container">
+      <button class="popup__button-close" type="button" title="Закрыть окно"></button>
+        <form class="popup__form" name="Edit profile" novalidate>
+          <h3 class="popup__edit-profile">Редактировать профиль</h3>
+          <input class="popup__input popup__input_name" placeholder="Имя"  type="text" minlength="2" maxlength="40" required>
+          <span class="popup__input-error" id="name-input-error"></span>
+          <input class="popup__input popup__input_profession" placeholder="Профессия"  type="text" minlength="2" maxlength="40" required>
+          <span class="popup__input-error" id="profession-input-error"></span>
+          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
