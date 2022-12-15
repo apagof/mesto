@@ -13,6 +13,7 @@
   box-sizing: border-box;
   border-radius: 2px;
   cursor: pointer;
+  display: block;
 }
 
 .profile__add-button:hover {
