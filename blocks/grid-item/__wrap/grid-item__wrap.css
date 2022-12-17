@@ -4,6 +4,5 @@
   display: flex;
   justify-content: space-between;
   padding: 25px 15px 25px 21px;
-  overflow: hidden;
-  border-radius: 0 0 10px 10px;    
+  border-radius: 0 0 10px 10px;
 }
