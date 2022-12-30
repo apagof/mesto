@@ -1,6 +1,7 @@
 .grid-item__delete-btn {
   background-image: url('../../../images/bin.svg');
   background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
   border: none;
   max-width: 18px;
   width: 100%;

@@ -8,8 +8,11 @@
   margin: 0;
   cursor: pointer;
   background-image: url(../../../images/like.svg);
+  background-repeat: no-repeat;
+  background-color: #fff;
 }
 .grid-item__like:hover {
-  opacity: .5;
-  transition: 1s ease;
+  opacity: 0.5;
+  transition: .2s linear;
+  cursor: pointer;
 }
