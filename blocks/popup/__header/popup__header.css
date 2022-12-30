@@ -1,4 +1,4 @@
-.popup__edit-profile {
+.popup__header {
   margin: 34px 64px 54px 36px;
   font-weight: 900;
   font-size: 24px;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__edit-profile {
+  .popup__header {
     font-size: 18px;
     margin: 25px 22px 75px 22px;
   }

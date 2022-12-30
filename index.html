@@ -27,7 +27,7 @@
     </section>
     <section class="photos">
         <ul class="grid-photos">
-            <li class="grid-item">
+           <!-- <li class="grid-item">
                 <img src="./images/Карачаево.jpg" alt="Карачаевск" class="grid-item__image">
                 <div class="grid-item__wrap">
                 <h3 class="grid-item__name">Карачаевск</h3>
@@ -51,7 +51,8 @@
                 <button type="button" class="grid-item__like"></button>
               </div>
             </li>
-            <li class="grid-item"><img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
+            <li class="grid-item">
+              <img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
               <div class="grid-item__wrap">
                 <h3 class="grid-item__name">Домбай</h3>
                 <button type="button" class="grid-item__like"></button>
@@ -62,18 +63,18 @@
                 <h3 class="grid-item__name">Карачаево-Черкессия</h3>
                 <button type="button" class="grid-item__like"></button>
               </div>
-            </li>
+            </li> -->
         </ul>
     </section>
   </main>
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-     <div class="popup">
+     <div class="popup popup__edit">
       <div class="popup__container">
       <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
         <form class="popup__form" name="Edit-profile" novalidate>
-          <h3 class="popup__edit-profile">Редактировать профиль</h3>
+          <h3 class="popup__header">Редактировать профиль</h3>
           <input class="popup__input popup__input_type_name" placeholder="Жак-Ив Кусто"  type="text" name="name" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="name-input-error"></span>
           <input class="popup__input popup__input_type_profession" placeholder="Исследователь океана"  type="text"  name="profession" minlength="2" maxlength="40" required>
@@ -82,6 +83,28 @@
         </form>
       </div>
     </div>
+    <div class="popup popup__add-pic">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
+        <form class="popup__form-add" name="add-pic" novalidate >
+          <h3 class="popup__header">Новое место</h3>
+          <input class="popup__input popup__input_type_name" placeholder="Название" type="text" name="place" minlength="2" maxlength="40" required>
+          <span class="popup__input-error" id="name-input-error"></span>
+          <input class="popup__input popup__input_type_place" placeholder="Ссылка на картинку" type="url" name="link" id='link' required>
+          <span class="popup__input-error" id="place-input-error"></span>
+          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <template id="card-template">
+      <li class="grid-item">
+        <img src="#" alt="#" class="grid-item__image">
+        <div class="grid-item__wrap">
+          <h3 class="grid-item__name"></h3>
+          <button type="button" class="grid-item__like"></button>
+          <button class="grid-item__delete-btn"></button>
+        </div>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 </html>
