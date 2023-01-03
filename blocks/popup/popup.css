@@ -6,12 +6,11 @@
   left: 0;
   bottom: 0;
   right: 0;
-  transition: visibility 0.5s, opacity 0.5s linear;
   justify-content:center;
   align-items:center;
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s linear;
-  background: rgba(0, 0, 0, 0.5);
+  transition: visibility 0.5s, opacity 0.5s ease-in-out;
+  background: rgba(0, 0, 0, 0.9);
 }
