@@ -27,43 +27,6 @@
     </section>
     <section class="photos">
         <ul class="grid-photos">
-           <!-- <li class="grid-item">
-                <img src="./images/Карачаево.jpg" alt="Карачаевск" class="grid-item__image">
-                <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Карачаевск</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div>
-            </li>
-            <li class="grid-item"><img src="./images/Эльбрус.png" alt="Эльбрус" class="grid-item__image">
-              <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Гора Эльбрус</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div></li>
-            <li class="grid-item"><img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
-              <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Домбай</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div>
-            </li>
-            <li class="grid-item"><img src="./images/Эльбрус.png" alt="Эльбрус" class="grid-item__image">
-              <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Гора Эльбрус</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div>
-            </li>
-            <li class="grid-item">
-              <img src="./images/Домбай.png" alt="Домбай" class="grid-item__image">
-              <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Домбай</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div>
-            </li>
-            <li class="grid-item"><img src="./images/Карачаево.jpg" alt="Карачаево-Черкессия" class="grid-item__image">
-              <div class="grid-item__wrap">
-                <h3 class="grid-item__name">Карачаево-Черкессия</h3>
-                <button type="button" class="grid-item__like"></button>
-              </div>
-            </li> -->
         </ul>
     </section>
   </main>
@@ -73,13 +36,13 @@
      <div class="popup popup_type_edit">
       <div class="popup__container">
       <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-        <form class="popup__form" name="Edit-profile">
+        <form class="popup__edit-form" name="Edit-profile">
           <h3 class="popup__header">Редактировать профиль</h3>
-          <input class="popup__input popup__input_type_name" placeholder="Жак-Ив Кусто"  type="text" name="name" minlength="2" maxlength="40" required>
+          <input class="popup__input popup__input_type_name" placeholder="Имя"  type="text" name="name" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="name-input-error"></span>
-          <input class="popup__input popup__input_type_profession" placeholder="Исследователь океана"  type="text"  name="profession" minlength="2" maxlength="40" required>
+          <input class="popup__input popup__input_type_profession" placeholder="О себе"  type="text"  name="profession" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="profession-input-error"></span>
-          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
+          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
@@ -90,7 +53,7 @@
           <h3 class="popup__header">Новое место</h3>
           <input type = "text" class="popup__input popup__input_type_place" placeholder="Название" name="place" minlength="2" maxlength="40" required>
           <span class="popup__input-error"></span>
-          <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="text" name="link" id='link' required>
+          <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="url" name="link" id='link' required>
           <span class="popup__input-error" id="place-input-error"></span>
           <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
         </form>
@@ -108,8 +71,8 @@
         <img src="#" alt="#" class="grid-item__image">
         <div class="grid-item__wrap">
           <h3 class="grid-item__name"></h3>
-          <button type="button" class="grid-item__like"></button>
-          <button class="grid-item__delete-btn"></button>
+          <button type="button" class="grid-item__like" aria-label="Понравилось"></button>
+          <button class="grid-item__delete-btn" aria-label="Удалить картинку"></button>
         </div>
         </li>
     </template>

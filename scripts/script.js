@@ -29,7 +29,7 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputProf = document.querySelector('.popup__input_type_profession');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
-const form = document.querySelector('.popup__form');
+const form = document.querySelector('.popup__edit-form');
 
 
 // open and close popups
@@ -41,7 +41,7 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 };
 
-const popups = document.querySelectorAll('.popup');
+// const popups = document.querySelectorAll('.popup');
 const closeButtons = document.querySelectorAll('.popup__button-close');
 
 closeButtons.forEach((button) => {
@@ -83,16 +83,16 @@ formAdd.addEventListener('submit', handleAddFormSumbit);
 const popupEdit = document.querySelector('.popup_type_edit');
 const editButton = document.querySelector('.profile__edit-button');
 
-const OpenPopupProfile = () => {
+const openPopupProfile = () => {
   inputName.value = profileName.textContent;
   inputProf.value = profileJob.textContent;
   openPopup(popupEdit);
 };
-editButton.addEventListener('click', OpenPopupProfile);
+editButton.addEventListener('click', openPopupProfile);
 //  /open edit popup
 
 // submit info edit profile
-function handleFormSubmit(evt) {
+function submitEditPopup(evt) {
 
     evt.preventDefault();
     profileName.textContent = inputName.value;
@@ -100,7 +100,7 @@ function handleFormSubmit(evt) {
     closePopup (popupEdit);
 }
 
-form.addEventListener('submit', handleFormSubmit);
+form.addEventListener('submit', submitEditPopup);
 
 // /submit info edit profile
 // add like button
@@ -123,7 +123,7 @@ const imagePopup = document.querySelector('.popup_type_image-big');
 
 const openBigImage = (e) => {
   popupCardImage.src = e.target.src;
-  popupCardImage,alt = e.target.altl
+  popupCardImage.alt = e.target.alt;
   imageCaption.textContent = e.target.alt;
   openPopup(imagePopup);
 }
@@ -135,15 +135,15 @@ const	cardsContainer = document.querySelector('.grid-photos');
 const	cardTemplate = document.querySelector('#card-template').content; // получаем содержимое
 
 const	cardElement = (name, link) => {
-const	card = cardTemplate.cloneNode(true); // клонируем содержимое
+  const	card = cardTemplate.cloneNode(true); // клонируем содержимое
 
-card.querySelector('.grid-item__image').src = link; // присваиваем  ссылку
-card.querySelector('.grid-item__image').alt = name;
-card.querySelector('.grid-item__name').textContent = name; // присваиваем  имя
+  card.querySelector('.grid-item__image').src = link; // присваиваем  ссылку
+  card.querySelector('.grid-item__image').alt = name;
+  card.querySelector('.grid-item__name').textContent = name; // присваиваем  имя
 
-card.querySelector('.grid-item__like').addEventListener('click', likeCard);
-card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
-card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
+  card.querySelector('.grid-item__like').addEventListener('click', likeCard);
+  card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
+  card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
 
 return card;
 };
