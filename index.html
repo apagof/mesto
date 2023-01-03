@@ -73,7 +73,7 @@
      <div class="popup popup__edit">
       <div class="popup__container">
       <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-        <form class="popup__form" name="Edit-profile" novalidate>
+        <form class="popup__form" name="Edit-profile">
           <h3 class="popup__header">Редактировать профиль</h3>
           <input class="popup__input popup__input_type_name" placeholder="Жак-Ив Кусто"  type="text" name="name" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="name-input-error"></span>
@@ -86,14 +86,21 @@
     <div class="popup popup__add-pic">
       <div class="popup__container">
         <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-        <form class="popup__form-add" name="add-pic" novalidate >
+        <form class="popup__form-add" name="add-pic">
           <h3 class="popup__header">Новое место</h3>
-          <input class="popup__input popup__input_type_name" placeholder="Название" type="text" name="place" minlength="2" maxlength="40" required>
+          <input type = "text" class="popup__input popup__input_type_place" placeholder="Название" name="place" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="name-input-error"></span>
-          <input class="popup__input popup__input_type_place" placeholder="Ссылка на картинку" type="url" name="link" id='link' required>
+          <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="text" name="link" id='link' required>
           <span class="popup__input-error" id="place-input-error"></span>
           <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
         </form>
+      </div>
+    </div>
+     <div class="popup popup__image-big">
+      <div class="popup__image-container">
+          <img class="popup__card-image" src="#" alt="#">
+          <p class="popup__image-caption"></p>
+          <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
       </div>
     </div>
     <template id="card-template">

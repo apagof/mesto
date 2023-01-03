@@ -31,6 +31,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const form = document.querySelector('.popup__form');
 
+
 // open and close popups
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
@@ -48,6 +49,36 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 // /open and close popups
+// open add popup
+const popupAdd = document.querySelector('.popup__add-pic');
+const addButton = document.querySelector('.profile__add-button');
+
+const openAddProfile = () => {
+    openPopup(popupAdd);
+}
+addButton.addEventListener('click', openAddProfile);
+// /open add popup
+// add pic
+const formAdd = document.querySelector('.popup__form-add');
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputLink  = document.querySelector('.popup__input_type_link');
+
+ const addNewCard = () => {
+  const name = inputPlace.value;
+  const link = inputLink.value;
+  cardsContainer.prepend(cardElement(name, link));
+ }
+
+ function handleAddFormSumbit (evt) {
+  evt.preventDefault();
+  addNewCard();
+  closePopup(popupAdd);
+  formAdd.reset();
+ }
+
+formAdd.addEventListener('submit', handleAddFormSumbit);
+
+// /add pic
 // open edit popup
 const popupEdit = document.querySelector('.popup__edit');
 const editButton = document.querySelector('.profile__edit-button');
@@ -59,15 +90,7 @@ const OpenPopupProfile = () => {
 };
 editButton.addEventListener('click', OpenPopupProfile);
 //  /open edit popup
-// open add popup
-const popupAdd = document.querySelector('.popup__add-pic');
-const addButton = document.querySelector('.profile__add-button');
 
-const OpenAddProfile = () => {
-    openPopup(popupAdd);
-}
-addButton.addEventListener('click', OpenAddProfile);
-// /open add popup
 // submit info edit profile
 function handleFormSubmit(evt) {
 
@@ -78,6 +101,7 @@ function handleFormSubmit(evt) {
 }
 
 form.addEventListener('submit', handleFormSubmit);
+
 // /submit info edit profile
 // add like button
 const likeCard = (e) => {
@@ -90,6 +114,21 @@ const removeCard = (e) => {
   card.remove();
 };
 // /remove card
+
+//  open big image
+const cardBigImage = document.querySelector('.grid-item__image');
+const popupCardImage = document.querySelector('.popup__card-image');
+const imageCaption = document.querySelector('.popup__image-caption');
+const imagePopup = document.querySelector('.popup__image-big');
+
+const openBigImage = (e) => {
+  popupCardImage.src = e.target.src;
+  popupCardImage,alt = e.target.altl
+  imageCaption.textContent = e.target.alt;
+  openPopup(imagePopup);
+}
+
+// /open big image
 // pics from JS
 const	cardsContainer = document.querySelector('.grid-photos');
 
@@ -104,7 +143,7 @@ card.querySelector('.grid-item__name').textContent = name; // присваива
 
 card.querySelector('.grid-item__like').addEventListener('click', likeCard);
 card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
-// card.querySelector('.grid-item__image').addEventListener('click', openPopupImage);
+card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
 
 return card;
 };
