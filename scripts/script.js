@@ -50,7 +50,7 @@ closeButtons.forEach((button) => {
 });
 // /open and close popups
 // open add popup
-const popupAdd = document.querySelector('.popup__add-pic');
+const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
 
 const openAddProfile = () => {
@@ -80,7 +80,7 @@ formAdd.addEventListener('submit', handleAddFormSumbit);
 
 // /add pic
 // open edit popup
-const popupEdit = document.querySelector('.popup__edit');
+const popupEdit = document.querySelector('.popup_type_edit');
 const editButton = document.querySelector('.profile__edit-button');
 
 const OpenPopupProfile = () => {
@@ -119,7 +119,7 @@ const removeCard = (e) => {
 const cardBigImage = document.querySelector('.grid-item__image');
 const popupCardImage = document.querySelector('.popup__card-image');
 const imageCaption = document.querySelector('.popup__image-caption');
-const imagePopup = document.querySelector('.popup__image-big');
+const imagePopup = document.querySelector('.popup_type_image-big');
 
 const openBigImage = (e) => {
   popupCardImage.src = e.target.src;
