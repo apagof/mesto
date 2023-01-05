@@ -29,7 +29,7 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputProf = document.querySelector('.popup__input_type_profession');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
-const form = document.querySelector('.popup__edit-form');
+const editForm = document.querySelector('.popup__edit-form');
 
 
 // open and close popups
@@ -100,7 +100,7 @@ function submitEditPopup(evt) {
     closePopup (popupEdit);
 }
 
-form.addEventListener('submit', submitEditPopup);
+editForm.addEventListener('submit', submitEditPopup);
 
 // /submit info edit profile
 // add like button
