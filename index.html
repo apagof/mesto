@@ -36,7 +36,7 @@
      <div class="popup popup_type_edit">
       <div class="popup__container">
       <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-        <form class="popup__edit-form" name="Edit-profile">
+        <form class="popup__edit-form popup__form" name="Edit-profile" novalidate>
           <h3 class="popup__header">Редактировать профиль</h3>
           <input class="popup__input popup__input_type_name" placeholder="Имя"  type="text" name="name" minlength="2" maxlength="40" required>
           <span class="popup__input-error" id="name-input-error"></span>
@@ -49,9 +49,16 @@
     <div class="popup popup_type_add-pic">
       <div class="popup__container">
         <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
-        <form class="popup__form-add" name="add-pic">
+        <form class="popup__form-add popup__form" name="add-pic" novalidate>
           <h3 class="popup__header">Новое место</h3>
-          <input type = "text" class="popup__input popup__input_type_place" placeholder="Название" name="place" minlength="2" maxlength="40" required>
+            <input type="text"
+              class="popup__input popup__input_type_place"
+              placeholder="Название"
+              name="place"
+              minlength="2"
+              maxlength="40"
+              required
+            >
           <span class="popup__input-error"></span>
           <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="url" name="link" id='link' required>
           <span class="popup__input-error" id="place-input-error"></span>
@@ -76,6 +83,8 @@
         </div>
         </li>
     </template>
+    <script src="./scripts/constants.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
 </html>
