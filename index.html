@@ -38,11 +38,34 @@
       <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
         <form class="popup__edit-form popup__form" name="Edit-profile" novalidate>
           <h3 class="popup__header">Редактировать профиль</h3>
-          <input class="popup__input popup__input_type_name" placeholder="Имя"  type="text" name="name" minlength="2" maxlength="40" required>
-          <span class="popup__input-error" id="name-input-error"></span>
-          <input class="popup__input popup__input_type_profession" placeholder="О себе"  type="text"  name="profession" minlength="2" maxlength="40" required>
-          <span class="popup__input-error" id="profession-input-error"></span>
-          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit" aria-label="Сохранить">Сохранить</button>
+          <input class="popup__input popup__input_type_name"
+            placeholder="Имя"
+            type="text"
+            name="name"
+            minlength="2"
+            maxlength="40"
+            required
+            id="input-name"
+          >
+          <span class="popup__input-error" id="input-name-error"></span>
+
+          <input class="popup__input popup__input_type_profession"
+            placeholder="О себе"
+            type="text"
+            name="profession"
+            minlength="2"
+            maxlength="200"
+            required
+            id="input-profession"
+          >
+
+          <span class="popup__input-error" id="input-profession-error"></span>
+
+          <button class="popup__button-save"
+          type="submit"
+          value="Сохранить"
+          name="Submit"
+          aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
@@ -52,16 +75,23 @@
         <form class="popup__form-add popup__form" name="add-pic" novalidate>
           <h3 class="popup__header">Новое место</h3>
             <input type="text"
-              class="popup__input popup__input_type_place"
+              class="popup__input popup__input_type_place popup__input_type_error"
               placeholder="Название"
               name="place"
               minlength="2"
-              maxlength="40"
+              maxlength="30"
               required
+              id="input-new"
             >
-          <span class="popup__input-error"></span>
-          <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="url" name="link" id='link' required>
-          <span class="popup__input-error" id="place-input-error"></span>
+          <span class="popup__input-error" id="input-new-error"></span>
+          <input class="popup__input popup__input_type_link popup__input_type_error"
+            placeholder="Ссылка на картинку"
+            type="url"
+            name="link"
+            required
+            id="input-place"
+          >
+          <span class="popup__input-error" id="input-place-error"></span>
           <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
         </form>
       </div>
