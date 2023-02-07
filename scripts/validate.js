@@ -1,77 +1,44 @@
 const formValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-  buttonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button_disabled',
-  errorClass: '.popup__input-error_active'
+  errorClass: 'popup__input-error'
 }
 
+function disableSubmit (event) {
+  event.preventDefault();
+}
 
 function enableValidation(config) {
-   const form = document.querySelector(config.formSelector);
-   addInputListeners(config);
+  const form = document.querySelector(config.formSelector);
 
+  form.addEventListener('submit', disableSubmit);
+
+  addInputListeners(form, config);
 }
 
-function handleFormInput(event, config) {
-    const input = event.target;
-    const inputId = input.id;
-    const errorElement = document.querySelector(`#${inputId}-error`); // объявляем спаны
+function handleAddFormInput(event, config) {
+  const input = event.target;
+  const inputId = input.id;
+  const errorElement = document.querySelector(`#${inputId}-error`);
+  console.log(errorElement);
 
-
-// добавляем / убираем текст ошибки
-
-    if (input.validity.valid) {
-      input.classList.remove(config.errorClass);
-      errorElement.textContent='';
-    } else {
-      input.classList.add(config.errorClass);
-      errorElement.textContent = input.validationMessage;
-      };
-
-}
-// /добавляем / убираем текст ошибки
-function showInputError (formElement, inputElement, errorMessage) {
-  inputElement.classList.add(formValidationConfig.errorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(formValidationConfig.inputErrorClass);
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+   if (input.validity.valid) {
+    input.classList.remove(config.errorClass);
+    errorElement.textContent='';
+   } else {
+    input.classList.add(config.errorClass);
+    errorElement.textContent = input.validationMessage;
+   }
 }
 
-function addInputListeners(config) {
-  const inputList = document.querySelectorAll(config.inputSelector);
+function addInputListeners(form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
 
   inputList.forEach(function (item) {
-     item.addEventListener('input', (event) => {
-      handleFormInput(event, config)
-      console.log(handleFormInput(event, config));
-     });
+    item.addEventListener('input', (event) => {
+      handleAddFormInput(event, config)
+    });
   });
-
 }
 
-    function submitAvailable(config) {
-
-     const inactiveButton = document.querySelector(config.inactiveButtonClass);
-     const submitButton = Array.from(document.querySelectorAll(config.buttonSelector));
-
-      submitButton.forEach((input) => {
-
-    if (input.validity.valid) {
-      submitButton.classList.remove(inactiveButton);
-
-   } else {
-      submitButton.disabled;
-      submitButton.classList.add(inactiveButton);
-    }
-    submitAvailable();
-
-  });
-
-  console.log(submitButton);
-};
-
 enableValidation(formValidationConfig);
-
-
