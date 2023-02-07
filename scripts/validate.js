@@ -32,12 +32,13 @@ function handleAddFormInput(event, config) {
 }
 
 function addInputListeners(form, config) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  const inputList = Array.from(document.querySelectorAll(config.inputSelector));
 
   inputList.forEach(function (item) {
     item.addEventListener('input', (event) => {
       handleAddFormInput(event, config)
     });
+    console.log(inputList);
   });
 }
 
