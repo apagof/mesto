@@ -158,8 +158,9 @@ const closePopupByClick = (evt) => {
 function keyDownEscape(evt) {
   if (evt.key === 'Escape') {
     popups.forEach((popup) => {
+      closePopup(popup);
     });
-    console.log(evt);
+
 };
 }
 // /close popup by esc
