@@ -1,11 +1,4 @@
-const formValidationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  errorClass: 'popup__input-error_active',
-  buttonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error'
-}
+
 
 // Вынос элементов формы в константы
 const formElement = document.querySelector(formValidationConfig.formSelector);
@@ -90,10 +83,12 @@ const enableValidation = () => {
 };
 // Сбрасываем формы
 const reset = (popup) => {
-  const spanError = popup.querySelectorAll(formValidationConfig.errorClass);
-  const buttonElement = popup.querySelector(formValidationConfig.buttonSelector);
-  const inputs = popup.querySelectorAll(formValidationConfig.inputSelector);
+
   const form = popup.querySelector(formValidationConfig.formSelector);
+  const buttonElement = popup.querySelector(formValidationConfig.buttonSelector);
+  const spanError = popup.querySelectorAll(formValidationConfig.errorClass);
+  const inputs = popup.querySelectorAll(formValidationConfig.inputSelector);
+
   if (popup.classList.contains('popup_type_edit')) {
     buttonElement.classList.remove((formValidationConfig.inactiveButtonClass));
   };
