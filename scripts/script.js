@@ -15,11 +15,13 @@ const addButton = document.querySelector('.profile__add-button');
 // open and close popups
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  reset(popup);
   document.addEventListener('keydown', keyDownEscape); // слушатель закрытия по Escape
 };
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  reset(popup);
   document.removeEventListener('keydown', keyDownEscape); // удаление слушателя закрытия по Escape
 };
 
@@ -66,6 +68,7 @@ const openPopupProfile = () => {
   inputName.value = profileName.textContent;
   inputProf.value = profileJob.textContent;
   openPopup(popupEdit);
+
 };
 editButton.addEventListener('click', openPopupProfile);
 //  /open edit popup
