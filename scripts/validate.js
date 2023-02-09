@@ -15,7 +15,7 @@ function disableSubmit (event) {
 // Добавляем класс с ошибкой
 const showInputError = (formElement, inputElement, errorMessage, popupError, inputError) => {
 
-  const errorElement = document.querySelector(`#${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
   errorElement.textContent = errorMessage;
   errorElement.classList.add(popupError);
@@ -25,7 +25,7 @@ const showInputError = (formElement, inputElement, errorMessage, popupError, inp
 // Удаляем класс с ошибкой
 const hideInputError = (formElement, inputElement, popupError, inputError) => {
 
-  const errorElement = document.querySelector(`#${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
   errorElement.classList.remove(popupError);
   inputElement.classList.remove(inputError);
@@ -46,16 +46,19 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   });
 };
-// Включаем / отключаем кнопку
-const toggleButtonState = (inputList, buttonElements, inactiveButton) => {
 
+
+// Включаем / отключаем кнопку
+const toggleButtonState = (inputList, buttonElements, obj) => {
+
+   console.log(buttonElements);
 
     buttonElements.forEach((button) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add(inactiveButton);
+    button.classList.add(obj['inactiveButtonClass']);
     button.setAttribute('disabled', true);
   } else {
-    button.classList.remove(inactiveButton);
+    button.classList.remove(obj['inactiveButtonClass']);
     button.removeAttribute('disabled', false);
   }
 });
@@ -66,14 +69,14 @@ const setEventListeners = (formElement, obj) => {
   const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
   const buttonElements = Array.from(formElement.querySelectorAll(obj['buttonSelector']));
 
-  console.log(buttonElements);
 
-  toggleButtonState(inputList, buttonElements, inactiveButton);
+
+  toggleButtonState(inputList, buttonElements, obj);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement, inputError, popupError);
-      toggleButtonState(inputList, buttonElements, inactiveButton);
+      toggleButtonState(inputList, buttonElements, obj);
     });
   });
 };
