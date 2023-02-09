@@ -1,10 +1,11 @@
-
-
 // Вынос элементов формы в константы
 const formElement = document.querySelector(formValidationConfig.formSelector);
 const formInput = document.querySelector(formValidationConfig.inputSelector);
 const formError = document.querySelector(`#${formInput.id}-error`);
 const buttonElement = document.querySelector(formValidationConfig.buttonSelector);
+const popupError = document.querySelector(formValidationConfig.errorClass);
+const inactiveButton = document.querySelector(formValidationConfig.inactiveButtonClass);
+const inputError = document.querySelector(formValidationConfig.inputErrorClass);
 
 function disableSubmit (event) {
   event.preventDefault();
