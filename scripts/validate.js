@@ -63,15 +63,15 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
 
   const inputList = Array.from(formElement.querySelectorAll(formValidationConfig.inputSelector));
-  const buttonElement = Array.from(document.querySelectorAll(formValidationConfig.buttonSelector));
+  const buttonElements = Array.from(document.querySelectorAll(formValidationConfig.buttonSelector));
 
 
-  toggleButtonState(inputList, buttonElement, inactiveButton);
+  toggleButtonState(inputList, buttonElements, inactiveButton);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElements);
     });
   });
 };
@@ -94,6 +94,7 @@ const reset = (popup) => {
 
   if (popup.classList.contains('popup_type_edit')) {
     buttonElement.classList.remove((formValidationConfig.inactiveButtonClass));
+    buttonElement.removeAttribute('disabled', false);
   };
   if (popup.classList.contains('popup_type_add-pic')) {
     form.reset();
