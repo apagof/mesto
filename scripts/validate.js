@@ -91,7 +91,7 @@ const enableValidation = (obj) => {
 
 
 // Сбрасываем формы
-const reset = (popup) => {
+const reset = (popup, obj) => {
 
   const form = popup.querySelector(formValidationConfig.formSelector);
   const buttonElement = popup.querySelector(formValidationConfig.buttonSelector);
@@ -113,6 +113,7 @@ const reset = (popup) => {
     input.classList.remove('popup__input_type_error');
     if (input.value == '') {
       buttonElement.classList.add((formValidationConfig.inactiveButtonClass));
+      button.setAttribute('disabled', true);
     }
   });
 
