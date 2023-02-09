@@ -7,37 +7,37 @@ const popupError = document.querySelector(formValidationConfig.errorClass);
 const inactiveButton = document.querySelector(formValidationConfig.inactiveButtonClass);
 const inputError = document.querySelector(formValidationConfig.inputErrorClass);
 
+
 function disableSubmit (event) {
   event.preventDefault();
 }
 
-
 // Добавляем класс с ошибкой
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, popupError, inputError) => {
 
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  const errorElement = document.querySelector(`#${inputElement.id}-error`);
 
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(formValidationConfig.errorClass);
-  inputElement.classList.add(formValidationConfig.inputErrorClass);
+  errorElement.classList.add(popupError);
+  inputElement.classList.add(inputError);
   };
 
 // Удаляем класс с ошибкой
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, popupError, inputError) => {
 
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  const errorElement = document.querySelector(`#${inputElement.id}-error`);
 
-  errorElement.classList.remove(formValidationConfig.errorClass);
-  inputElement.classList.remove(formValidationConfig.inputErrorClass);
+  errorElement.classList.remove(popupError);
+  inputElement.classList.remove(inputError);
   errorElement.textContent = '';
 };
 // Проверяем валидность поля
-const isValid = (formElement, inputElement) => {
+const isValid = (formElement, inputElement, popupError, inputError) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, popupError, inputError);
 
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, popupError, inputError);
   }
 };
 
@@ -47,43 +47,46 @@ const hasInvalidInput = (inputList) => {
   });
 };
 // Включаем / отключаем кнопку
-const toggleButtonState = (inputList, buttonElement) => {
-    buttonElement.forEach((button) => {
+const toggleButtonState = (inputList, buttonElements, inactiveButton) => {
+
+
+    buttonElements.forEach((button) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add(formValidationConfig.inactiveButtonClass);
+    button.classList.add(inactiveButton);
     button.setAttribute('disabled', true);
   } else {
-    button.classList.remove(formValidationConfig.inactiveButtonClass);
+    button.classList.remove(inactiveButton);
     button.removeAttribute('disabled', false);
   }
 });
 };
 //  функция сброса валидации
 
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, obj) => {
+  const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
+  const buttonElements = Array.from(formElement.querySelectorAll(obj['buttonSelector']));
 
-  const inputList = Array.from(formElement.querySelectorAll(formValidationConfig.inputSelector));
-  const buttonElements = Array.from(document.querySelectorAll(formValidationConfig.buttonSelector));
-
+  console.log(buttonElements);
 
   toggleButtonState(inputList, buttonElements, inactiveButton);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElements);
+      isValid(formElement, inputElement, inputError, popupError);
+      toggleButtonState(inputList, buttonElements, inactiveButton);
     });
   });
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(formValidationConfig.formSelector));
-
+const enableValidation = (obj) => {
+  const formList = Array.from(document.querySelectorAll(obj['formSelector']));
 
     formList.forEach((formElement) => {
-      setEventListeners(formElement);
+      setEventListeners(formElement, obj);
     });
 };
+
+
 // Сбрасываем формы
 const reset = (popup) => {
 
@@ -112,4 +115,6 @@ const reset = (popup) => {
 
 };
 
-enableValidation();
+enableValidation(formValidationConfig);
+
+

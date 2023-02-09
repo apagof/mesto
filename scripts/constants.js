@@ -25,12 +25,12 @@ const initialCards = [
   }
 ];
 
-const formValidationConfig = {
+const formValidationConfig = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   errorClass: 'popup__input-error_active',
   buttonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error'
-}
+});
 
