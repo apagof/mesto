@@ -113,7 +113,7 @@ const reset = (popup, obj) => {
     input.classList.remove('popup__input_type_error');
     if (input.value == '') {
       buttonElement.classList.add((formValidationConfig.inactiveButtonClass));
-      button.setAttribute('disabled', true);
+      buttonElement.setAttribute('disabled', true);
     }
   });
 
