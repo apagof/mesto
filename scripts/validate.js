@@ -54,7 +54,7 @@ const toggleButtonState = (inputList, buttonElement) => {
     button.setAttribute('disabled', true);
   } else {
     button.classList.remove(formValidationConfig.inactiveButtonClass);
-    button.removeAttribute()
+    button.removeAttribute('disabled', false);
   }
 });
 };
