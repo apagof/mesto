@@ -1,4 +1,4 @@
-
+import {Card} from "./Card.js";
 
 
 
@@ -11,6 +11,7 @@ const popups = document.querySelectorAll('.popup');
 const closeButtons = document.querySelectorAll('.popup__button-close');
 const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
+const cardsContainer = document.querySelector('.grid-photos');
 
 // open and close popups
 const openPopup = (popup) => {
@@ -44,15 +45,37 @@ const formAdd = document.querySelector('.popup__form-add');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink  = document.querySelector('.popup__input_type_link');
 
- const addNewCard = () => {
-  const name = inputPlace.value;
-  const link = inputLink.value;
-  cardsContainer.prepend(cardElement(name, link));
- }
+//  const addNewCard = () => {
+//   const name = inputPlace.value;
+//   const link = inputLink.value;
+//   cardsContainer.prepend(cardElement(name, link));
+//  }
+
+const renderCard = (data, container) => {
+  container.prepend(addNewCard(data))
+}
+
+initialCards.forEach((item) => {
+  renderCard(item, cardsContainer);
+});
+
+///======== ADD NEW CARD =============
+
+function addNewCard(data) {
+  const card = new Card(data, '#card-template');
+  const cardElement = card.generateCard();
+
+
+  return cardElement;
+};
 
  function handleAddFormSumbit (evt) {
   evt.preventDefault();
-  addNewCard();
+  const name = inputPlace.value;
+  const link = inputLink.value;
+  const data = {name, link};
+  addNewCard(data, cardsContainer);
+  // нужна функция отрисовки карточек (строка 48-51 не работает, но 51 строка полезна)
   closePopup(popupAdd);
   formAdd.reset();
  }
@@ -86,17 +109,7 @@ function submitEditPopup(evt) {
 editForm.addEventListener('submit', submitEditPopup);
 
 // /submit info edit profile
-// add like button
-const likeCard = (e) => {
-  e.target.classList.toggle('grid-item__like_active');
-}
-// /add like button
-// remove card
-const removeCard = (e) => {
-  const card = e.target.closest('.grid-item');
-  card.remove();
-};
-// /remove card
+
 
 //  open big image
 const cardBigImage = document.querySelector('.grid-item__image');
@@ -112,33 +125,33 @@ const openBigImage = (e) => {
 }
 
 // /open big image
-// pics from JS
-const	cardsContainer = document.querySelector('.grid-photos');
+// // pics from JS
+// const	cardsContainer = document.querySelector('.grid-photos');
 
-const	cardTemplate = document.querySelector('#card-template').content; // получаем содержимое
+// const	cardTemplate = document.querySelector('#card-template').content; // получаем содержимое
 
-const	cardElement = (name, link) => {
-  const	card = cardTemplate.cloneNode(true); // клонируем содержимое
+// const	cardElement = (name, link) => {
+//   const	card = cardTemplate.cloneNode(true); // клонируем содержимое
 
-  card.querySelector('.grid-item__image').src = link; // присваиваем  ссылку
-  card.querySelector('.grid-item__image').alt = name;
-  card.querySelector('.grid-item__name').textContent = name; // присваиваем  имя
+//   card.querySelector('.grid-item__image').src = link; // присваиваем  ссылку
+//   card.querySelector('.grid-item__image').alt = name;
+//   card.querySelector('.grid-item__name').textContent = name; // присваиваем  имя
 
-  card.querySelector('.grid-item__like').addEventListener('click', likeCard);
-  card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
-  card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
+//   card.querySelector('.grid-item__like').addEventListener('click', likeCard);
+//   card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
+//   card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
 
-return card;
-};
+// return card;
+// };
 
-function renderCards(cards) {
-  for (let i = 0; i < cards.length; i++) {
-    const createCard = cardElement(initialCards[i].name, initialCards[i].link);
-    cardsContainer.append(createCard);
-  }
-}
-renderCards(initialCards);
-//  /pics from JS
+// function renderCards(cards) {
+//   for (let i = 0; i < cards.length; i++) {
+//     const createCard = cardElement(initialCards[i].name, initialCards[i].link);
+//     cardsContainer.append(createCard);
+//   }
+// }
+// renderCards(initialCards);
+// //  /pics from JS
 
 const setPopupListener = (popup) => {
   keyDownEscape(popup);
