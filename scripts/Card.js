@@ -1,3 +1,5 @@
+import {popupCardImage, imageCaption, imagePopup, openPopup} from "./index.js";
+
 export class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -28,18 +30,12 @@ generateCard() {
   return this._element;
 };
  //  // pics from JS
-// const	cardsContainer = document.querySelector('.grid-photos');
-
-// const	cardTemplate = document.querySelector('#card-template').content; // получаем содержимое
-
-// const	cardElement = (name, link) => {
-//   const	card = cardTemplate.cloneNode(true); // клонируем содержимое
 
 //
 _setEventListeners() {
   this._element.querySelector('.grid-item__like').addEventListener('click', () => { this._likeCard()});
   this._element.querySelector('.grid-item__delete-btn').addEventListener('click', () => { this._removeCard()});
-  this._element.querySelector('.grid-item__image').addEventListener('click', () => {this._openBigImage()});
+  this._element.querySelector('.grid-item__image').addEventListener('click', () => {this._openBigImage(this._name, this._link)});
 }
 
 // add like button
@@ -54,12 +50,14 @@ _removeCard() {
 };
 // /remove card
 
-// function renderCards(cards) {
-//   for (let i = 0; i < cards.length; i++) {
-//     const createCard = cardElement(initialCards[i].name, initialCards[i].link);
-//     cardsContainer.append(createCard);
-//   }
-// }
-// renderCards(initialCards);
-// //  /pics from JS
+//  open big image
+_openBigImage() {
+  popupCardImage.src = this._link;
+  popupCardImage.alt = this._name;
+  imageCaption.textContent = this._name;
+  openPopup(imagePopup);
+}
+
+// /open big image
+
 }

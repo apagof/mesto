@@ -34,3 +34,4 @@ const formValidationConfig = ({
   inputErrorClass: 'popup__input_type_error'
 });
 
+export {initialCards, formValidationConfig};

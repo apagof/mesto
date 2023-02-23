@@ -1,5 +1,6 @@
 import {Card} from "./Card.js";
-
+import {FormValidator} from "./FormValidator.js";
+import { initialCards } from "./constants.js";
 
 
 const inputName = document.querySelector('.popup__input_type_name');
@@ -12,6 +13,11 @@ const closeButtons = document.querySelectorAll('.popup__button-close');
 const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
 const cardsContainer = document.querySelector('.grid-photos');
+const cardBigImage = document.querySelector('.grid-item__image');
+const popupCardImage = document.querySelector('.popup__card-image');
+const imageCaption = document.querySelector('.popup__image-caption');
+const imagePopup = document.querySelector('.popup_type_image-big');
+
 
 // open and close popups
 const openPopup = (popup) => {
@@ -45,11 +51,12 @@ const formAdd = document.querySelector('.popup__form-add');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink  = document.querySelector('.popup__input_type_link');
 
-//  const addNewCard = () => {
-//   const name = inputPlace.value;
-//   const link = inputLink.value;
-//   cardsContainer.prepend(cardElement(name, link));
-//  }
+
+function addNewCard(data) {
+  const card = new Card(data, '#card-template');
+  const cardElement = card.generateCard();
+  return cardElement;
+};
 
 const renderCard = (data, container) => {
   container.prepend(addNewCard(data))
@@ -61,20 +68,16 @@ initialCards.forEach((item) => {
 
 ///======== ADD NEW CARD =============
 
-function addNewCard(data) {
-  const card = new Card(data, '#card-template');
-  const cardElement = card.generateCard();
 
-
-  return cardElement;
-};
 
  function handleAddFormSumbit (evt) {
   evt.preventDefault();
   const name = inputPlace.value;
   const link = inputLink.value;
   const data = {name, link};
-  addNewCard(data, cardsContainer);
+  renderCard(data, cardsContainer);
+  evt.target.reset();
+
   // нужна функция отрисовки карточек (строка 48-51 не работает, но 51 строка полезна)
   closePopup(popupAdd);
   formAdd.reset();
@@ -111,48 +114,6 @@ editForm.addEventListener('submit', submitEditPopup);
 // /submit info edit profile
 
 
-//  open big image
-const cardBigImage = document.querySelector('.grid-item__image');
-const popupCardImage = document.querySelector('.popup__card-image');
-const imageCaption = document.querySelector('.popup__image-caption');
-const imagePopup = document.querySelector('.popup_type_image-big');
-
-const openBigImage = (e) => {
-  popupCardImage.src = e.target.src;
-  popupCardImage.alt = e.target.alt;
-  imageCaption.textContent = e.target.alt;
-  openPopup(imagePopup);
-}
-
-// /open big image
-// // pics from JS
-// const	cardsContainer = document.querySelector('.grid-photos');
-
-// const	cardTemplate = document.querySelector('#card-template').content; // получаем содержимое
-
-// const	cardElement = (name, link) => {
-//   const	card = cardTemplate.cloneNode(true); // клонируем содержимое
-
-//   card.querySelector('.grid-item__image').src = link; // присваиваем  ссылку
-//   card.querySelector('.grid-item__image').alt = name;
-//   card.querySelector('.grid-item__name').textContent = name; // присваиваем  имя
-
-//   card.querySelector('.grid-item__like').addEventListener('click', likeCard);
-//   card.querySelector('.grid-item__delete-btn').addEventListener('click', removeCard);
-//   card.querySelector('.grid-item__image').addEventListener('click', openBigImage);
-
-// return card;
-// };
-
-// function renderCards(cards) {
-//   for (let i = 0; i < cards.length; i++) {
-//     const createCard = cardElement(initialCards[i].name, initialCards[i].link);
-//     cardsContainer.append(createCard);
-//   }
-// }
-// renderCards(initialCards);
-// //  /pics from JS
-
 const setPopupListener = (popup) => {
   keyDownEscape(popup);
  };
@@ -182,3 +143,6 @@ function keyDownEscape(evt) {
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });
+
+
+export {cardBigImage, popupCardImage, imageCaption, imagePopup, openPopup}
