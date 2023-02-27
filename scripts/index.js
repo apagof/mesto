@@ -1,6 +1,6 @@
 import {Card} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
-import { initialCards } from "./constants.js";
+import { initialCards, formValidationConfig } from "./constants.js";
 
 
 const inputName = document.querySelector('.popup__input_type_name');
@@ -17,6 +17,10 @@ const cardBigImage = document.querySelector('.grid-item__image');
 const popupCardImage = document.querySelector('.popup__card-image');
 const imageCaption = document.querySelector('.popup__image-caption');
 const imagePopup = document.querySelector('.popup_type_image-big');
+const formProfile = document.querySelector('.popup__form');
+const formAdd = document.querySelector('.popup__form-add');
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputLink  = document.querySelector('.popup__input_type_link');
 
 
 // open and close popups
@@ -41,15 +45,15 @@ closeButtons.forEach((button) => {
 
 const openAddProfile = () => {
     openPopup(popupAdd);
-    reset(popupAdd);
 
+    // placeValidation.reset();
 }
+
+
 addButton.addEventListener('click', openAddProfile);
 // /open add popup
 // add pic
-const formAdd = document.querySelector('.popup__form-add');
-const inputPlace = document.querySelector('.popup__input_type_place');
-const inputLink  = document.querySelector('.popup__input_type_link');
+
 
 
 function addNewCard(data) {
@@ -66,10 +70,6 @@ initialCards.forEach((item) => {
   renderCard(item, cardsContainer);
 });
 
-///======== ADD NEW CARD =============
-
-
-
  function handleAddFormSumbit (evt) {
   evt.preventDefault();
   const name = inputPlace.value;
@@ -77,8 +77,6 @@ initialCards.forEach((item) => {
   const data = {name, link};
   renderCard(data, cardsContainer);
   evt.target.reset();
-
-  // нужна функция отрисовки карточек (строка 48-51 не работает, но 51 строка полезна)
   closePopup(popupAdd);
   formAdd.reset();
  }
@@ -94,7 +92,8 @@ const openPopupProfile = () => {
   inputName.value = profileName.textContent;
   inputProf.value = profileJob.textContent;
   openPopup(popupEdit);
-  reset(popupEdit);
+  profileValidation.reset();
+
 
 };
 editButton.addEventListener('click', openPopupProfile);
@@ -112,11 +111,6 @@ function submitEditPopup(evt) {
 editForm.addEventListener('submit', submitEditPopup);
 
 // /submit info edit profile
-
-
-const setPopupListener = (popup) => {
-  keyDownEscape(popup);
- };
 
 
 
@@ -143,6 +137,14 @@ function keyDownEscape(evt) {
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });
+
+const profileValidation = new FormValidator(formValidationConfig, editForm);
+
+profileValidation.enableValidation();
+
+const placeValidation = new FormValidator(formValidationConfig, formAdd);
+
+placeValidation.enableValidation();
 
 
 export {cardBigImage, popupCardImage, imageCaption, imagePopup, openPopup}
