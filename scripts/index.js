@@ -19,25 +19,17 @@ const formAdd = document.querySelector('.popup__form-add');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink  = document.querySelector('.popup__input_type_link');
 
-
 // open and close popups
-
-
-
-
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
-
 // /open and close popups
 // open add popup
-
 const openAddProfile = () => {
     openPopup(popupAdd);
     placeValidation.reset();
 }
-
 addButton.addEventListener('click', openAddProfile);
 // /open add popup
 // add pic
@@ -100,11 +92,6 @@ const closePopupByClick = (evt) => {
   }
 };
 // /close by mouse
-// close popup by esc
-
-
-
-// /close popup by esc
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });

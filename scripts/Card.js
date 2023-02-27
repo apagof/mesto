@@ -1,5 +1,4 @@
 import {popupCardImage, imageCaption, imagePopup, openPopup, closePopup} from "./utils.js";
-
 export class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -17,11 +16,9 @@ export class Card {
   return cardElement;
  };
 
-
 generateCard() {
   this._element = this._getTemplate();
   this._image = this._element.querySelector('.grid-item__image');
-
 
   this._image.src = this._link; // присваиваем  ссылку
   this._image.alt = this._name;
@@ -58,7 +55,5 @@ _openBigImage() {
   imageCaption.textContent = this._name;
   openPopup(imagePopup);
 }
-
 // /open big image
-
 }

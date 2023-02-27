@@ -3,7 +3,6 @@ const imageCaption = document.querySelector('.popup__image-caption');
 const imagePopup = document.querySelector('.popup_type_image-big');
 const isEscape = 'Escape';
 
-
 function keyDownEscape(evt) {
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === isEscape) {
