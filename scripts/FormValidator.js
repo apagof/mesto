@@ -14,6 +14,7 @@ this._inputElements =this._formElement.querySelectorAll(this._formInput);
 }
 
 
+
 // Добавляем класс с ошибкой
 _showInputError(inputElement) {
 
@@ -45,6 +46,11 @@ _isValid (inputElement) {
   }
 };
 
+_hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
 
 // Включаем / отключаем кнопку
 _toggleButtonState() {

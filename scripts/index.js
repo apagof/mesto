@@ -45,8 +45,7 @@ closeButtons.forEach((button) => {
 
 const openAddProfile = () => {
     openPopup(popupAdd);
-
-    // placeValidation.reset();
+    placeValidation.reset();
 }
 
 
@@ -137,7 +136,7 @@ function keyDownEscape(evt) {
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });
-
+// Валидация
 const profileValidation = new FormValidator(formValidationConfig, editForm);
 
 profileValidation.enableValidation();
