@@ -46,11 +46,7 @@ _isValid (inputElement) {
   }
 };
 
-_hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
+
 
 // Включаем / отключаем кнопку
 _toggleButtonState() {
