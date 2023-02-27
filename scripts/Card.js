@@ -1,4 +1,4 @@
-import {popupCardImage, imageCaption, imagePopup, openPopup} from "./index.js";
+import {popupCardImage, imageCaption, imagePopup, openPopup, closePopup} from "./utils.js";
 
 export class Card {
   constructor(data, templateSelector) {
@@ -20,10 +20,11 @@ export class Card {
 
 generateCard() {
   this._element = this._getTemplate();
+  this._image = this._element.querySelector('.grid-item__image');
 
 
-  this._element.querySelector('.grid-item__image').src = this._link; // присваиваем  ссылку
-  this._element.querySelector('.grid-item__image').alt = this._name;
+  this._image.src = this._link; // присваиваем  ссылку
+  this._image.alt = this._name;
   this._element.querySelector('.grid-item__name').textContent = this._name; // присваиваем  имя
   this._setEventListeners();
 

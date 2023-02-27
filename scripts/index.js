@@ -1,7 +1,7 @@
 import {Card} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
 import { initialCards, formValidationConfig } from "./constants.js";
-
+import {popupCardImage, imageCaption, imagePopup, openPopup, keyDownEscape,closePopup} from "./utils.js"
 
 const inputName = document.querySelector('.popup__input_type_name');
 const inputProf = document.querySelector('.popup__input_type_profession');
@@ -14,9 +14,6 @@ const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
 const cardsContainer = document.querySelector('.grid-photos');
 const cardBigImage = document.querySelector('.grid-item__image');
-const popupCardImage = document.querySelector('.popup__card-image');
-const imageCaption = document.querySelector('.popup__image-caption');
-const imagePopup = document.querySelector('.popup_type_image-big');
 const formProfile = document.querySelector('.popup__form');
 const formAdd = document.querySelector('.popup__form-add');
 const inputPlace = document.querySelector('.popup__input_type_place');
@@ -24,15 +21,8 @@ const inputLink  = document.querySelector('.popup__input_type_link');
 
 
 // open and close popups
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', keyDownEscape); // слушатель закрытия по Escape
-};
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyDownEscape); // удаление слушателя закрытия по Escape
-};
+
 
 
 closeButtons.forEach((button) => {
@@ -48,15 +38,12 @@ const openAddProfile = () => {
     placeValidation.reset();
 }
 
-
 addButton.addEventListener('click', openAddProfile);
 // /open add popup
 // add pic
 
-
-
-function addNewCard(data) {
-  const card = new Card(data, '#card-template');
+function addNewCard(validationConfig) {
+  const card = new Card(validationConfig, '#card-template');
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -92,58 +79,40 @@ const openPopupProfile = () => {
   inputProf.value = profileJob.textContent;
   openPopup(popupEdit);
   profileValidation.reset();
-
-
 };
 editButton.addEventListener('click', openPopupProfile);
 //  /open edit popup
 
 // submit info edit profile
 function submitEditPopup(evt) {
-
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileJob.textContent = inputProf.value;
     closePopup (popupEdit);
 }
-
 editForm.addEventListener('submit', submitEditPopup);
-
 // /submit info edit profile
-
-
-
 // close by mouse
 const closePopupByClick = (evt) => {
-    if (evt.target === evt.currentTarget) {
-      popups.forEach((popup) => {
-        closePopup(popup);
-    });
+  const activePopup = evt.target;
+    if (activePopup === evt.currentTarget) {
+        closePopup(activePopup);
   }
 };
 // /close by mouse
 // close popup by esc
 
-function keyDownEscape(evt) {
-  if (evt.key === 'Escape') {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
 
-};
-}
+
 // /close popup by esc
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });
 // Валидация
 const profileValidation = new FormValidator(formValidationConfig, editForm);
-
 profileValidation.enableValidation();
 
 const placeValidation = new FormValidator(formValidationConfig, formAdd);
-
 placeValidation.enableValidation();
-
 
 export {cardBigImage, popupCardImage, imageCaption, imagePopup, openPopup}
