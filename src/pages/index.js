@@ -1,7 +1,14 @@
-import {Card} from "./Card.js";
-import {FormValidator} from "./FormValidator.js";
-import { initialCards, formValidationConfig } from "./constants.js";
-import {popupCardImage, imageCaption, imagePopup, openPopup, keyDownEscape,closePopup} from "./utils.js"
+import {Card} from "../scripts/Card.js";
+import {FormValidator} from "../scripts/FormValidator.js";
+import { initialCards, formValidationConfig } from "../scripts/constants.js";
+import {popupCardImage, imageCaption, imagePopup} from "../scripts/utils.js";
+import "./index.css";
+import {Section} from "../scripts/Section.js";
+import {Popup} from '../scripts/Popup.js';
+import {PopupWithImage} from '../scripts/PopupWithImage.js';
+import {PopupWithForm} from '../scripts/PopupWithForm.js';
+import {UserInfo} from '../scripts/Userinfo.js';
+
 
 const inputName = document.querySelector('.popup__input_type_name');
 const inputProf = document.querySelector('.popup__input_type_profession');
@@ -9,7 +16,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const editForm = document.querySelector('.popup__edit-form');
 const popups = document.querySelectorAll('.popup');
-const closeButtons = document.querySelectorAll('.popup__button-close');
+
 const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
 const cardsContainer = document.querySelector('.grid-photos');
@@ -84,14 +91,14 @@ function submitEditPopup(evt) {
 }
 editForm.addEventListener('submit', submitEditPopup);
 // /submit info edit profile
-// close by mouse
-const closePopupByClick = (evt) => {
-  const activePopup = evt.target;
-    if (activePopup === evt.currentTarget) {
-        closePopup(activePopup);
-  }
-};
-// /close by mouse
+// // close by mouse
+// const closePopupByClick = (evt) => {
+//   const activePopup = evt.target;
+//     if (activePopup === evt.currentTarget) {
+//         closePopup(activePopup);
+//   }
+// };
+// // /close by mouse
 popups.forEach((popup) => {
   popup.addEventListener('click', closePopupByClick);
 });
@@ -102,4 +109,4 @@ profileValidation.enableValidation();
 const placeValidation = new FormValidator(formValidationConfig, formAdd);
 placeValidation.enableValidation();
 
-export {cardBigImage, popupCardImage, imageCaption, imagePopup, openPopup}
+export {cardBigImage, popupCardImage, imageCaption, imagePopup}

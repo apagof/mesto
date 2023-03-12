@@ -1,9 +1,10 @@
-import {popupCardImage, imageCaption, imagePopup, openPopup, closePopup} from "./utils.js";
+
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick - handleCardClick;
   };
 
   _getTemplate() {
@@ -19,6 +20,8 @@ export class Card {
 generateCard() {
   this._element = this._getTemplate();
   this._image = this._element.querySelector('.grid-item__image');
+  this._likeButton = this._element.querySelector('.grid-item__like');
+  this._deleteButton = this._element.querySelector('.grid-item__delete-btn');
 
   this._image.src = this._link; // присваиваем  ссылку
   this._image.alt = this._name;
@@ -31,9 +34,9 @@ generateCard() {
 
 //
 _setEventListeners() {
-  this._element.querySelector('.grid-item__like').addEventListener('click', () => { this._likeCard()});
-  this._element.querySelector('.grid-item__delete-btn').addEventListener('click', () => { this._removeCard()});
-  this._element.querySelector('.grid-item__image').addEventListener('click', () => {this._openBigImage(this._name, this._link)});
+  this._likeButton.addEventListener('click', () => { this._likeCard()});
+  this._deleteButton.addEventListener('click', () => { this._removeCard()});
+  this._image.addEventListener('click', () => { this._handleCardClick();});
 }
 
 // add like button
@@ -47,13 +50,4 @@ _removeCard() {
   card.remove();
 };
 // /remove card
-
-//  open big image
-_openBigImage() {
-  popupCardImage.src = this._link;
-  popupCardImage.alt = this._name;
-  imageCaption.textContent = this._name;
-  openPopup(imagePopup);
-}
-// /open big image
 }

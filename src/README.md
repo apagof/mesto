@@ -1,5 +1,4 @@
-Спринт №4: Mesto
-Спринт №5: Mesto: карточки и попапы
+Спринт 8: Classes
 
 
 Верстка адаптивного сайта с применением Javascript.
@@ -19,6 +18,8 @@
 4. Flexbox
 5. Grid layout
 6. BEM nested
+7. WebPack
+8. ES6 Classes
 
 
 Ссылка: https://apagof.github.io/mesto/
