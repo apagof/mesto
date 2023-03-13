@@ -7,7 +7,7 @@ export default class Popup {
     this._closeButton = this._popup.querySelector('.popup__button-close');
   };
 
-  _keyDownEscape = (evt) => {
+  _handleEscClose = (evt) => {
     if (evt.key === this._isEscape) {
       this.close();
   };
@@ -22,13 +22,13 @@ _closePopupByClick = (evt) => {
 
 open() {
   this._popup.classList.add('popup_opened');
-  document.addEventListener('keydown', this._keyDownEscape);
+  document.addEventListener('keydown', this._handleEscClose);
   document.addEventListener('click', this._closePopupByClick);
 };
 
 close() {
   this._popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', this._keyDownEscape); // удаление слушателя закрытия по Escape
+  document.removeEventListener('keydown', this._handleEscClose); // удаление слушателя закрытия по Escape
   document.removeEventListener('click', this._closePopupByClick);
 }
 
