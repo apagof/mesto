@@ -7,8 +7,6 @@ export default class Popup {
     this._closeButton = this._popup.querySelector('.popup__button-close');
   };
 
-
-
   _keyDownEscape = (evt) => {
     if (evt.key === this._isEscape) {
       this.close();

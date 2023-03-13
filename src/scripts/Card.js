@@ -31,7 +31,6 @@ generateCard() {
   return this._element;
 };
  //  // pics from JS
-
 //
 _setEventListeners() {
   this._likeButton.addEventListener('click', () => { this._likeCard()});

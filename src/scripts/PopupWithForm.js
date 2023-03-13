@@ -25,9 +25,11 @@ export class PopupWithForm extends Popup {
     this._closeButton.addEventListener('click', () => {
       this.close();
     });
+    this._popup.addEventListener('click', this._closePopupByClick);
   };
 
   close() {
     super.close();
+    this._form.reset();
   };
 };

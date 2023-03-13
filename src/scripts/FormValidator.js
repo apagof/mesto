@@ -1,5 +1,4 @@
 export class FormValidator {
-
 // Вынос элементов формы в константы
 constructor (validationConfig, formElement) {
 this._formSelector = validationConfig.formSelector;
@@ -11,7 +10,6 @@ this._inputError = validationConfig.inputErrorClass;
 this._formElement = formElement;
 this._inputElements =this._formElement.querySelectorAll(this._formInput);
 }
-
 // Добавляем класс с ошибкой
 _showInputError(inputElement) {
 
@@ -28,7 +26,6 @@ _hideInputError(inputElement) {
   inputElement.classList.remove(this._inputError);
   this._errorElement.textContent = '';
 };
-
 
 // Проверяем валидность поля
 _isValid (inputElement) {

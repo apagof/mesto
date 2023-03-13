@@ -1,14 +1,11 @@
 import {Card} from "../scripts/Card.js";
 import {FormValidator} from "../scripts/FormValidator.js";
-import {initialCards, formValidationConfig, inputName, inputProf, profileName,
-  profileJob, editForm, popups, popupAdd, addButton, cardsContainer, formAdd} from "../scripts/constants.js";
+import {initialCards, formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd} from "../scripts/constants.js";
 import "./index.css";
 import {Section} from "../scripts/Section.js";
 import {PopupWithImage} from '../scripts/PopupWithImage.js';
 import {PopupWithForm} from '../scripts/PopupWithForm.js';
 import {UserInfo} from '../scripts/Userinfo.js';
-import {Popup} from "../scripts/Popup.js";
-
 
 const userInfo = new UserInfo('.profile__name', '.profile__profession');
 
@@ -24,7 +21,6 @@ popupEdit.setEventListeners();
 // open big image
 const openBigImage = new PopupWithImage('.popup_type_image-big');
 openBigImage.setEventListeners();
-
 
 // add new Card
 function addNewCard(item) {
@@ -55,7 +51,6 @@ const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
   submitFormHandler: (formData) => {
     cardSection.renderItem(formData);
     popupAddPlace.close();
-    placeValidation.disableButton();
   }
 });
 
@@ -65,9 +60,11 @@ const editButton = document.querySelector('.profile__edit-button');
 
 // open profile popup
 const openPopupProfile = () => {
+
   const object = userInfo.getUserInfo();
+
   inputName.value = object.name;
-  inputProf.value = object.description;
+  inputProf.value = object.profession;
   popupEdit.open()
   profileValidation.reset();
 };
@@ -87,5 +84,3 @@ profileValidation.enableValidation();
 
 const placeValidation = new FormValidator(formValidationConfig, formAdd);
 placeValidation.enableValidation();
-
-

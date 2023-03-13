@@ -7,14 +7,16 @@ export class UserInfo {
   };
 
   getUserInfo() {
-  this._nameValue = this._nameInput.textContent;
-  this._aboutText = this._aboutInput.textContent;
-  this._values = {name: this._nameValue, description: this._aboutText};
-  return this._values;
+  const userData = {
+  name: this._nameInput.textContent,
+  profession: this._aboutInput.textContent
+    }
+  return userData;
   };
 
-  setUserInfo({name, description}) {
+  setUserInfo({name, profession}) {
     this._nameInput.textContent = name;
-    this._aboutInput.textContent = description;
+    this._aboutInput.textContent = profession;
   };
 }
+
