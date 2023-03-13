@@ -40,15 +40,19 @@ _isValid (inputElement) {
   }
 };
 
+_disableButton() {
+  this._formElement.querySelector(this._buttonSelector).classList.add(this._inactiveButton);
+  this._formElement.querySelector(this._buttonSelector).setAttribute('disabled', true);
+};
+
 // Включаем / отключаем кнопку
 _toggleButtonState() {
   this._submitButton = this._formElement.querySelector(this._buttonSelector);
   if ((!this._formElement.checkValidity())) {
-    this._submitButton.classList.add(this._inactiveButton);
-    this._submitButton.setAttribute('disabled', true);
+    this._disableButton();
   } else {
-    this._submitButton.classList.remove(this._inactiveButton);
-    this._submitButton.removeAttribute('disabled', false);
+    this._formElement.querySelector(this._buttonSelector).classList.remove(this._inactiveButton);
+    this._formElement.querySelector(this._buttonSelector).removeAttribute('disabled', false);
   };
 };
 

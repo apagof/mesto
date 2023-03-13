@@ -1,3 +1,14 @@
+const inputName = document.querySelector('.popup__input_type_name');
+const inputProf = document.querySelector('.popup__input_type_profession');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__profession');
+const editForm = document.querySelector('.popup__edit-form');
+const popups = document.querySelectorAll('.popup');
+const popupAdd = document.querySelector('.popup_type_add-pic');
+const addButton = document.querySelector('.profile__add-button');
+const cardsContainer = document.querySelector('.grid-photos');
+const formAdd = document.querySelector('.popup__form-add');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -34,4 +45,4 @@ const formValidationConfig = ({
   inputErrorClass: 'popup__input_type_error'
 });
 
-export {initialCards, formValidationConfig};
+export {initialCards, formValidationConfig, inputName, inputProf, profileName, profileJob, editForm, popups, popupAdd, addButton, cardsContainer, formAdd};

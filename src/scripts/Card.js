@@ -4,12 +4,12 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._handleCardClick - handleCardClick;
+    this._handleCardClick = handleCardClick;
   };
 
   _getTemplate() {
     const cardElement = document
-    .querySelector("#card-template")
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.grid-item')
     .cloneNode(true);
