@@ -32,14 +32,14 @@ cardSection.renderItems();
 // add new Card
 function addNewCard(item) {
   const card = new Card(item, '#card-template',
-  () => handleCardClick(item.name, item.link));
+  () => handleCardClick(item.place, item.link));
 
   return card.generateCard();
 
 };
 
-function handleCardClick(name, link) {
-  const data = {name: name, link: link}
+function handleCardClick(place, link) {
+  const data = {name: place, link: link}
   openBigImage.open(data)
 }
 

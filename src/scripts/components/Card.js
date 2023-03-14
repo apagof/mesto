@@ -1,10 +1,10 @@
 
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
-    this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._place = data.place;
   };
 
   _getTemplate() {
@@ -25,8 +25,8 @@ generateCard() {
   this._deleteButton = this._element.querySelector('.grid-item__delete-btn');
 
   this._image.src = this._link; // присваиваем  ссылку
-  this._cardName.textContent = this._name; // присваиваем  имя
-  this._image.alt = this._name;
+  this._cardName.textContent = this._place; // присваиваем  имя
+  this._image.alt = this._place;
   this._setEventListeners();
 
   return this._element;
