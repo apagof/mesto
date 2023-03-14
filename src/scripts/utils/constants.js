@@ -8,6 +8,8 @@ const popupAdd = document.querySelector('.popup_type_add-pic');
 const addButton = document.querySelector('.profile__add-button');
 const cardsContainer = document.querySelector('.grid-photos');
 const formAdd = document.querySelector('.popup__form-add');
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputLink = document.querySelector('.popup__input_type_link');
 
 const initialCards = [
   {
@@ -45,4 +47,4 @@ const formValidationConfig = ({
   inputErrorClass: 'popup__input_type_error'
 });
 
-export {initialCards, formValidationConfig, inputName, inputProf, profileName, profileJob, editForm, popups, popupAdd, addButton, cardsContainer, formAdd};
+export {initialCards, formValidationConfig, inputName, inputProf, profileName, profileJob, inputPlace, editForm, popups, popupAdd, inputLink, addButton, cardsContainer, formAdd};

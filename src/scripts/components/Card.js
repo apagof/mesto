@@ -19,23 +19,25 @@ export class Card {
 
 generateCard() {
   this._element = this._getTemplate();
+  this._cardName = this._element.querySelector('.grid-item__name');
   this._image = this._element.querySelector('.grid-item__image');
   this._likeButton = this._element.querySelector('.grid-item__like');
   this._deleteButton = this._element.querySelector('.grid-item__delete-btn');
 
   this._image.src = this._link; // присваиваем  ссылку
+  this._cardName.textContent = this._name; // присваиваем  имя
   this._image.alt = this._name;
-  this._element.querySelector('.grid-item__name').textContent = this._name; // присваиваем  имя
   this._setEventListeners();
 
   return this._element;
+
 };
  //  // pics from JS
 //
 _setEventListeners() {
-  this._likeButton.addEventListener('click', () => { this._likeCard()});
-  this._deleteButton.addEventListener('click', () => { this._removeCard()});
-  this._image.addEventListener('click', () => { this._handleCardClick();});
+  this._likeButton.addEventListener('click', () => this._likeCard());
+  this._deleteButton.addEventListener('click', () => this._removeCard());
+  this._image.addEventListener('click', () => this._handleCardClick());
 }
 
 // add like button

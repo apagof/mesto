@@ -4,6 +4,7 @@ export class PopupWithImage extends Popup {
     super(popupSelector);
     this._popupCardImage = this._popup.querySelector('.popup__card-image');
     this._imageCapiton = this._popup.querySelector('.popup__image-caption');
+
   };
 
   open(data) {
@@ -12,6 +13,7 @@ export class PopupWithImage extends Popup {
     this._popupCardImage.src = data.link;
     this._popupCardImage.alt = data.name;
     this._imageCapiton.textContent = data.name;
+
   }
 };
 

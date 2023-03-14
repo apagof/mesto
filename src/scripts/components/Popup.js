@@ -23,13 +23,13 @@ _closePopupByClick = (evt) => {
 open() {
   this._popup.classList.add('popup_opened');
   document.addEventListener('keydown', this._handleEscClose);
-  document.addEventListener('click', this._closePopupByClick);
+  this._popup.addEventListener('click', this._closePopupByClick);
 };
 
 close() {
   this._popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', this._handleEscClose); // удаление слушателя закрытия по Escape
-  document.removeEventListener('click', this._closePopupByClick);
+  this._popup.removeEventListener('click', this._closePopupByClick);
 }
 
 setEventListeners() {
