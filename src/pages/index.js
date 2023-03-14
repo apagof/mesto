@@ -48,7 +48,6 @@ const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 { submitFormHandler: (formData) => {
 
     cardSection.renderItem(formData);
-    console.log(formData);
     popupAddPlace.close();
 
   }
@@ -57,10 +56,10 @@ const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 // open profile popup
 const openPopupProfile = () => {
 
-  const infoObject = userInfo.getUserInfo();
+  const infoUser = userInfo.getUserInfo();
 
-  inputName.value = infoObject.name;
-  inputProf.value = infoObject.profession;
+  inputName.value = infoUser.name;
+  inputProf.value = infoUser.profession;
   popupEdit.open()
   profileValidation.reset();
 };
