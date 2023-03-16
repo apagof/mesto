@@ -13,7 +13,10 @@
   <main class="content">
     <section class="profile">
       <div class="profile__container">
+        <div class = "profile__avatar-wrap">
         <img src="<%=require('./images/Cousteau.jpg')%>" class="profile__avatar" alt="аватар">
+        <img src="<%=require('./images/pencil.png')%>" class="profile__avatar-edit" alt="редактировать профиль">
+      </div>
         <div class="profile__info">
           <div class="profile__wrap">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -101,6 +104,30 @@
           <img class="popup__card-image" src="#" alt="#">
           <p class="popup__image-caption"></p>
           <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
+        <form class="popup__form-add popup__form" name="edit-avatar" novalidate>
+          <h3 class="popup__header">Обновить аватар</h3>
+          <input type="url"
+          placeholder="Ссылка на картинку"
+          class="popup__input popup__input_type_link popup__input_type_error"
+          name="link"
+          required
+          id="avatar__input">
+          <span class="popup__input-error popup__link-error"></span>
+          <button class="popup__button-save" type="submit" value="Сохранить" name="Submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <h3 class="poppup__header popup__confirm_header">Вы уверены?</h3>
+        <form class="popup__form" name="confirm" novalidate>
+          <input type="submit" class="popup__button-save popup__confirm_button-save" name="submit" value="Да">
+        </form>
       </div>
     </div>
     <template id="card-template">
