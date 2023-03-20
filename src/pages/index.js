@@ -9,7 +9,7 @@ import {UserInfo} from '../scripts/components/Userinfo.js';
 import {API} from '../scripts/components/API.js';
 
 const api = new API({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-62/cards',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
   headers: {
     authorization: '9144373c-04cd-49fd-a484-74e2aad42f33',
     'Content-Type': 'application/json'
@@ -59,6 +59,7 @@ function handleCardClick(name, link) {
   const data = {name: name, link: link}
   openBigImage.open(data)
 }
+
 
 // add Card
 const popupAddPlace = new PopupWithForm('.popup_type_add-pic',

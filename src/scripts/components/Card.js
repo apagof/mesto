@@ -1,10 +1,12 @@
 
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, cardId, countLikes) {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._place = data.name;
+    this._cardId = cardId;
+    this._countLikes = countLikes;
   };
 
   _getTemplate() {
@@ -32,12 +34,21 @@ generateCard() {
   return this._element;
 
 };
+
+getIdCard() {
+  return this._cardId;
+}
+
  //  // pics from JS
 //
 _setEventListeners() {
   this._likeButton.addEventListener('click', () => this._likeCard());
   this._deleteButton.addEventListener('click', () => this._removeCard());
   this._image.addEventListener('click', () => this._handleCardClick());
+}
+
+renderLikes() {
+  this._likes.textContent = this._countLikes.length;
 }
 
 // add like button
