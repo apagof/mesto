@@ -6,16 +6,19 @@ export class API {
 
 
 getCards() {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
+ return fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
     method: 'GET',
   headers: {
     authorization: '9144373c-04cd-49fd-a484-74e2aad42f33'
   }
   })
-  .then(res => res.json())
-  .then((res) => {
-    console.log(res.json);
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   })
+  .then((result) => result)
 }
 
 addCard(name, link) {
@@ -23,13 +26,12 @@ addCard(name, link) {
     method: 'POST',
     headers: {
       authorization: '9144373c-04cd-49fd-a484-74e2aad42f33',
+      'Content-Type': 'application/json'},
     body: JSON.stringify({
       name: name,
       link: link
     })
-    }
-  })
-    .then((res) => res)
+    })
   }
 
 

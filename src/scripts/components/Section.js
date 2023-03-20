@@ -7,9 +7,11 @@ export class Section {
 
   renderItems() {
 
-    this._renderItems.forEach((item) => {
+    this._renderItems.then((result) => {
+    result.forEach((item) => {
       this._renderer(item);
     });
+  });
   };
  renderItem(item) {
   this._renderer(item);

@@ -16,16 +16,7 @@ const api = new API({
   }
 });
 
-function getData() {
-  fetch('https://nomoreparties.co/v1/cohortId/users/me', {
-    method: 'GET',
-    headers: {
-      authorization: '9144373c-04cd-49fd-a484-74e2aad42f33'
-    }
-    .then (res => console.log(res))
-  })
 
-}
 
 const userInfo = new UserInfo('.profile__name', '.profile__profession');
 const editButton = document.querySelector('.profile__edit-button');
@@ -38,12 +29,18 @@ const popupEdit = new PopupWithForm('.popup_type_edit', {
 });
 
 const cardSection = new Section({
-  items: initialCards,
+  items: api.getCards()
+.then((result) => {
+const newResult = result.reverse();
+return newResult;
+  })
+.catch((err) => {
+    console.log(err);
+  }),
   renderer: (item) => {
     const cardElement = addNewCard(item)
     cardSection.addItem(cardElement);
-
-  },
+    },
 }, cardsContainer
 );
 
