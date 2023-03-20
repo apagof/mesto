@@ -4,7 +4,7 @@ export class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._place = data.place;
+    this._place = data.name;
   };
 
   _getTemplate() {

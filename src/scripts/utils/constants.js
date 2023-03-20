@@ -11,32 +11,7 @@ const formAdd = document.querySelector('.popup__form-add');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
 
-const initialCards = [
-  {
-    place: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    place: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    place: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    place: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    place: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    place: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+
 
 const formValidationConfig = ({
   formSelector: '.popup__form',
@@ -47,4 +22,4 @@ const formValidationConfig = ({
   inputErrorClass: 'popup__input_type_error'
 });
 
-export {initialCards, formValidationConfig, inputName, inputProf, profileName, profileJob, inputPlace, editForm, popups, popupAdd, inputLink, addButton, cardsContainer, formAdd};
+export {formValidationConfig, inputName, inputProf, profileName, profileJob, inputPlace, editForm, popups, popupAdd, inputLink, addButton, cardsContainer, formAdd};

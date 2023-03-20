@@ -1,11 +1,31 @@
 import {Card} from "../scripts/components/Card.js";
 import {FormValidator} from "../scripts/components/FormValidator.js";
-import {initialCards, formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, inputPlace, inputLink, formAdd} from "../scripts/utils/constants.js";
+import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, inputPlace, inputLink, formAdd} from "../scripts/utils/constants.js";
 import "./index.css";
 import {Section} from "../scripts/components/Section.js";
 import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
 import {PopupWithForm} from '../scripts/components/PopupWithForm.js';
 import {UserInfo} from '../scripts/components/Userinfo.js';
+import {API} from '../scripts/components/API.js';
+
+const api = new API({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62/cards',
+  headers: {
+    authorization: '9144373c-04cd-49fd-a484-74e2aad42f33',
+    'Content-Type': 'application/json'
+  }
+});
+
+function getData() {
+  fetch('https://nomoreparties.co/v1/cohortId/users/me', {
+    method: 'GET',
+    headers: {
+      authorization: '9144373c-04cd-49fd-a484-74e2aad42f33'
+    }
+    .then (res => console.log(res))
+  })
+
+}
 
 const userInfo = new UserInfo('.profile__name', '.profile__profession');
 const editButton = document.querySelector('.profile__edit-button');
@@ -32,14 +52,14 @@ cardSection.renderItems();
 // add new Card
 function addNewCard(item) {
   const card = new Card(item, '#card-template',
-  () => handleCardClick(item.place, item.link));
+  () => handleCardClick(item.name, item.link));
 
   return card.generateCard();
 
 };
 
-function handleCardClick(place, link) {
-  const data = {name: place, link: link}
+function handleCardClick(name, link) {
+  const data = {name: name, link: link}
   openBigImage.open(data)
 }
 
