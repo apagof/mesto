@@ -11,15 +11,17 @@ getCards() {
     .catch(error => this._errorHandler(error));
   }
 // добавление карочки на сервер
-addCard(name, link) {
+addCard(data) {
   return fetch(`${this._baseUrl}/cards`, {
     method: 'POST',
-    headers: this._headers ,
+    headers: this._headers,
     body: JSON.stringify({
-      name: name,
-      link: link
+      name: `${data.name}`,
+      link: `${data.link}`
     })
     })
+    .then(response => this._checkRequestResult(response))
+    .catch(error => this._errorHandler(error));
   }
 // Удаление карты
 deleteCard(cardId) {
@@ -34,7 +36,7 @@ deleteCard(cardId) {
 // поставить лайк
 likeCard(cardId) {
   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-    method: 'DELETE',
+    method: 'PUT',
     headers: this._headers,
   })
   .then(response => this._checkRequestResult(response))
@@ -43,7 +45,7 @@ likeCard(cardId) {
 // Убрать лайк с карты
 unlikeCard(cardId) {
   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-    method: 'PUT',
+    method: 'DELETE',
     headers: this._headers,
   })
   .then(response => this._checkRequestResult(response))
