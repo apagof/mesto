@@ -27,7 +27,7 @@ export class PopupWithForm extends Popup {
   };
 
   waitSubmitButton() {
-    this._popupSubmitButton.value = "Сохранение...";
+    this._saveButton.textConent = "Сохранение...";
     this._saveButton.disabled = true;
   }
 

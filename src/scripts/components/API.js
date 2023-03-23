@@ -74,12 +74,13 @@ editUserInfo(name, profession) {
   .catch(error => this._errorHandler(error));
 }
 // Редактировать аватар
-editAvatar(avatarUrl) {
+editAvatar(link) {
+  console.log(link);
   return fetch(`${this._baesUrl}/users/me/avatar`, {
     method: "PATCH",
     headers: this._headers,
-    body: JSON.strigify({
-      avatar: avatarUrl
+    body: JSON.stringify({
+      avatar: `${link}`
     })
   })
     .then(response => this._checkRequestResult(response))

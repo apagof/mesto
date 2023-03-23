@@ -1,6 +1,6 @@
 import {Card} from "../scripts/components/Card.js";
 import {FormValidator} from "../scripts/components/FormValidator.js";
-import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar} from "../scripts/utils/constants.js";
+import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar, popupAvatarInput, editAvatarButton, popupFormAdd} from "../scripts/utils/constants.js";
 import "./index.css";
 import {Section} from "../scripts/components/Section.js";
 import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
@@ -20,6 +20,21 @@ let userId;
 const userInfo = new UserInfo('.profile__name', '.profile__profession');
 const editButton = document.querySelector('.profile__edit-button');
 const openBigImage = new PopupWithImage('.popup_type_image-big');
+const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
+{
+  submitFormHandler: (formData) => {
+    profileAvatar.src = popupAvatarInput.value;
+    Promise.all([formData, api.editAvatar(formData.link), popupEditAvatar.waitSubmitButton()])
+    .then((data) => {
+      popupEditAvatar.close();
+      popupEditAvatar.resetWaitSubmitButton();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+  }});
+  popupEditAvatar.setEventListeners();
+
 const popupEdit = new PopupWithForm('.popup_type_edit', {
   submitFormHandler: (formData) => {
     userInfo.setUserInfo(formData);
@@ -114,6 +129,7 @@ const formEditAvatarSubmitHandler = (event) => {
     });
 }
 
+
 const formDeleteSubmitHandler = (event, card) => {
   event.preventDefault();
 
@@ -125,6 +141,11 @@ const formDeleteSubmitHandler = (event, card) => {
       popupConfirm.close();
       popupConfirm.resetWaitSubmitButton();
     })
+}
+// open avatar popup
+const openAvatarPopup = () => {
+  popupEditAvatar.open();
+  editValidation.reset();
 }
 
 // open profile popup
@@ -138,7 +159,6 @@ const openPopupProfile = () => {
   profileValidation.reset();
 };
 
-
 // open add popup
 const openAddPopup = () => {
   placeValidation.reset();
@@ -150,6 +170,7 @@ addButton.addEventListener('click', openAddPopup);
 editButton.addEventListener('click', openPopupProfile);
 popupEdit.setEventListeners();
 openBigImage.setEventListeners();
+editAvatarButton.addEventListener('click', openAvatarPopup)
 
 // Валидация
 const profileValidation = new FormValidator(formValidationConfig, editForm);
@@ -157,6 +178,8 @@ profileValidation.enableValidation();
 
 const placeValidation = new FormValidator(formValidationConfig, formAdd);
 placeValidation.enableValidation();
+
+const editValidation = new FormValidator(formValidationConfig, popupFormAdd);
 
 // Promise ALL
 Promise.all([api.getUserInfo, api.getCards])
@@ -166,7 +189,7 @@ Promise.all([api.getUserInfo, api.getCards])
     profileAvatar.src = data[0].avatar;
     userId = data[0]._id;
 
-    CardSection.getItems();
+    CardSection.renderItems();
 
   })
   .catch((err) => {
