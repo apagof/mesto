@@ -16,15 +16,19 @@ const api = new API({
     'Content-Type': 'application/json'
   }
 });
+
+
 let userId;
 const userInfo = new UserInfo('.profile__name', '.profile__profession');
 const editButton = document.querySelector('.profile__edit-button');
+const popupConfirm = document.querySelector('.popup_type_confirm');
 const openBigImage = new PopupWithImage('.popup_type_image-big');
+
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 {
   submitFormHandler: (formData) => {
-    profileAvatar.src = popupAvatarInput.value;
-    Promise.all([formData, api.editAvatar(formData.link), popupEditAvatar.waitSubmitButton()])
+    userInfo.setUserInfo(formData);
+    Promise.all([formData, api.editAvatar(formData), popupEditAvatar.waitSubmitButton()])
     .then((data) => {
       popupEditAvatar.close();
       popupEditAvatar.resetWaitSubmitButton();
@@ -38,36 +42,32 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 const popupEdit = new PopupWithForm('.popup_type_edit', {
   submitFormHandler: (formData) => {
     userInfo.setUserInfo(formData);
+    Promise.all([formData, api.editUserInfo(formData), popupEdit.waitSubmitButton()])
+    .then((data) => {
     popupEdit.close();
-    resetWaitSubmitButton();
-  }
+    popupEdit.resetWaitSubmitButton();
+  })
+  .catch((error) => {
+    console.log(`Ошибка: ${err}`)
+  })
+}
 });
-
-api.getUserInfo()
-  .then(data => {
-    profileName.textContent = data.name;
-    profileJob.textContent = data.about;
-    profileAvatar.src = data.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 
 // add new Card
 function renderNewCard(item) {
   const card = new Card
   (
     item, '#card-template',
-    () => handleCardClick(item.name, item.link), userId,
     () => deleteCardApi(item._id),
-    () => isLiked(item._id, item)
+    () => isLiked(item._id, item),
+    () => handleCardClick(item.name, item.link),
   )
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 function deleteCardApi(cardId) {
-  api.deleteCard(cardId);
+  api.removeCard(cardId);
 }
 
 function isLiked(cardId, item) {
@@ -76,6 +76,7 @@ function isLiked(cardId, item) {
   } else {
     api.likeCard(cardId);
   }
+
 }
 function handleCardClick (name, link)  {
   const data = {name: name, link: link}
@@ -103,7 +104,7 @@ cardSection.renderItems();
 const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 {
   submitFormHandler: (formData) => {
-    Promise.all([api.getUserInfo, api.addCard(formData), popupAddPlace(waitSubmitButton())])
+    Promise.all([api.getUserInfo(), api.addCard(formData), popupAddPlace.waitSubmitButton()])
     .then((data) => {
       Promise.all([cardSection.renderItem(data[1])])
     })
@@ -116,19 +117,6 @@ const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
     }
 });
 popupAddPlace.setEventListeners();
-
-const formEditAvatarSubmitHandler = (event) => {
-  event.preventDefault();
-
-  avatarImage.src = popupAvatarInput.value;
-  popupEditAvatar.waitSubmitButton();
-
-  api.editUserAvatar(popupAvatarInput.value)
-    .finally(() => {
-      popupEditAvatar.close();
-    });
-}
-
 
 const formDeleteSubmitHandler = (event, card) => {
   event.preventDefault();
@@ -165,7 +153,7 @@ const openAddPopup = () => {
   popupAddPlace.open();
 }
 
-popupAddPlace.setEventListeners();
+
 addButton.addEventListener('click', openAddPopup);
 editButton.addEventListener('click', openPopupProfile);
 popupEdit.setEventListeners();
@@ -180,18 +168,18 @@ const placeValidation = new FormValidator(formValidationConfig, formAdd);
 placeValidation.enableValidation();
 
 const editValidation = new FormValidator(formValidationConfig, popupFormAdd);
+editValidation.enableValidation();
 
 // Promise ALL
-Promise.all([api.getUserInfo, api.getCards])
+Promise.all([api.getUserInfo(), api.getCards])
   .then((data) => {
     profileName.textContent = data[0].name;
     profileJob.textContent = data[0].about;
     profileAvatar.src = data[0].avatar;
     userId = data[0]._id;
-
-    CardSection.renderItems();
-
+    CardSection.getItems();
   })
   .catch((err) => {
     `Ошибка: ${err}`
   });
+

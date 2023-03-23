@@ -8,6 +8,7 @@ getCards() {
   return fetch(`${this._baseUrl}/cards`, {
     headers: this._headers})
     .then(response => this._checkRequestResult(response))
+    // .then(response => console.log(response))
     .catch(error => this._errorHandler(error));
   }
 // добавление карочки на сервер
@@ -61,13 +62,13 @@ getUserInfo() {
 }
 
 // Редактировать данные пользователя
-editUserInfo(name, profession) {
+editUserInfo(data) {
   return fetch(`${this._baseUrl}/users/me`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-      name: name,
-      about: profession
+      name: `${data.name}`,
+      about: `${data.profession}`
     })
   })
   .then(response => this._checkRequestResult(response))
