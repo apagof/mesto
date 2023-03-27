@@ -8,7 +8,6 @@ getCards() {
   return fetch(`${this._baseUrl}/cards`, {
     headers: this._headers})
     .then(response => this._checkRequestResult(response))
-    // .then(response => console.log(response))
     .catch(error => this._errorHandler(error));
   }
 // добавление карочки на сервер
@@ -26,12 +25,12 @@ addCard(data) {
   }
 // Удаление карты
 deleteCard(cardId) {
-  return fetch(`${this.baseUrl}/cards/${cardId}`, {
-  method: 'DELETE',
-  headers: this._headers,
-})
-.then(response => this._checkRequestResult(response))
-.catch(error => this._errorHandler(error));
+  return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: this._headers,
+  })
+  .then(response => this._checkRequestResult(response))
+  .catch(error => this._errorHandler(error));
 }
 
 // поставить лайк

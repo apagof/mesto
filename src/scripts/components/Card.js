@@ -1,19 +1,18 @@
 
 export class Card {
-  constructor(data, templateSelector, handleCardClick, deleteCardApi, userId, myId, isLiked, popupConifrm) {
+  constructor(data, userId, templateSelector, handleCardClick, deleteCardApi, popupConfirm) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._deleteCardApi = deleteCardApi;
-    this._popupConfirm = popupConifrm;
     this._cardId = data._id;
     this._countLikes = data.likes;
-    this._myId = myId;
+    // this._myId = myId;
     this._userId = userId;
     this._ownerId = data.owner._id;
-    this._popupConfirm = document.querySelector('.popup_type_confirm');
-    this._confirmDeleteButton = this._popupConfirm.querySelector('.popup__confirm_button-save');
+    // this._popupConfirm = document.querySelector('.popup_type_confirm');
+    this._popupConfirm = popupConfirm;
   };
 
   _getTemplate() {
@@ -42,17 +41,14 @@ generateCard() {
   this._setEventListeners();
 
  if (this._ownerId === this._userId) {
-  this._deleteButton.addEventListener('click', () =>
-    this._popupConfirm()
-  )
- } else {
+  this._deleteButton.addEventListener('click', () => {
+    this._popupConfirm();
+ });
+}
+   else {
   this._deleteButton.remove();
  }
-
-
-console.log(this._userId);
-// console.log(this._ownerId);
-
+ console.log(this._userId);
   if (this._countLikes.find((element) => (this._userId === element._id))) {
     this._likeButton.classList.add('.grid-item__like_active');
   } else {
@@ -73,7 +69,7 @@ disLike() {
   this._numberLikes.textContent = this._counter;
 }
 
-_rmeoveCard() {
+rmeoveCard() {
   this._deleteCardApi(this._cardId);
   this._element.remove();
 }
@@ -89,17 +85,6 @@ getOwnerId() {
   return this._userId;
  }
 
- getMyID(id) {
-  return this._myId;
-}
-
-_openConfirmPopup() {
-  this._popupConfirm.classList.add('.popup_opened');
-}
-_closeConfirmPopup() {
-  this._popupConfirm.classList.remove('.popup_opened');
-}
-
  //  // pics from JS
 _setEventListeners() {
   this._likeButton.addEventListener('click', () => {
@@ -109,14 +94,8 @@ _setEventListeners() {
       this.likeActive()
     }
   });
-  this._deleteButton.addEventListener('click', () => {this._openConfirmPopup();
-    this._confirmDeleteButton.addEventListener('click', () => {
-      this._removeCard();
-      this._closeConfirmPopup();
-    });
-  });
 
-  // this._image.addEventListener('click', () => this._handleCardClick());
+  this._image.addEventListener('click', () => this._handleCardClick());
 }
 
 }

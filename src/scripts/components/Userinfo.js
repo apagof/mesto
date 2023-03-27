@@ -20,7 +20,5 @@ export class UserInfo {
 setAvatar(url){
   this.avatar.src = url.avatar;
 }
-
-
 }
 
