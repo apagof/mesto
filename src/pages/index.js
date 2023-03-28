@@ -1,6 +1,6 @@
 import {Card} from "../scripts/components/Card.js";
 import {FormValidator} from "../scripts/components/FormValidator.js";
-import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar, popupAvatarInput, editAvatarButton, popupFormAdd} from "../scripts/utils/constants.js";
+import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar, editAvatarButton, popupFormAdd} from "../scripts/utils/constants.js";
 import "./index.css";
 import {Section} from "../scripts/components/Section.js";
 import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
@@ -26,7 +26,6 @@ const popupDeleteConfirmation = new PopupWithConfirm ('.popup_type_confirm',
 {
 submitFormHandler: (itemId, card) => {
   popupDeleteConfirmation.waitSubmitButton();
-
   api.deleteCard(itemId)
   .then(() => {
     card.rmeoveCard();
@@ -74,23 +73,24 @@ const cardSection = new Section({
 
 cardSection.renderItems();
 
-// function putLike(item, card) {
-//   api.likeCard(item._id)
-//   .then((res) => {
-//     card.likeCount(res);
-//     card.likeActive();
-//   })
-//   .catch(err => console.log(`Ошибка: ${err}`));
-// }
+function putLike(item, card) {
+  api.likeCard(item._id)
+  .then((res) => {
+    card.likeCount(res);
+    card.likeActive();
+    console.log(res);
+  })
+  .catch(err => console.log(`Ошибка: ${err}`));
+}
 
-// function removeLike(item, card) {
-//   api.unlikeCard(item._id)
-//   .then((res) => {
-//     card.likeCount(res);
-//     card.disLike();
-//   })
-//   .catch(err => console.log(`Ошибка: ${err}`));
-// }
+function removeLike(item, card) {
+  api.unlikeCard(item._id)
+  .then((res) => {
+    card.likeCount(res);
+    card.removeLike();
+  })
+  .catch(err => console.log(`Ошибка: ${err}`));
+}
 
 
 function handleCardClick (name, link)  {
@@ -117,14 +117,20 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 const popupEdit = new PopupWithForm('.popup_type_edit',
 {
   submitFormHandler: (formData) => {
-    userInfo.setUserInfo(formData);
-    Promise.all([formData, api.editUserInfo(formData), popupEdit.waitSubmitButton()])
-    .then((data) => {
+    popupEdit.waitSubmitButton();
+    api.editUserInfo(formData)
+     .then(() => {
+      userInfo.setUserInfo(formData);
+      api.editUserInfo(formData)
+    })
+    .then(() => {
     popupEdit.close();
-    popupEdit.resetWaitSubmitButton();
   })
-  .catch((error) => {
+  .catch((err) => {
     console.log(`Ошибка: ${err}`)
+  })
+  .finally(() => {
+    popupEdit.resetWaitSubmitButton();
   })
 }
 });
@@ -149,6 +155,7 @@ const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 });
 popupAddPlace.setEventListeners();
 
+// open confirm popup
 function popupConfirm(itemId, card) {
   popupDeleteConfirmation.open();
   popupDeleteConfirmation.setItemData(itemId, card);

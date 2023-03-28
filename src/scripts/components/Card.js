@@ -1,12 +1,12 @@
 
 export class Card {
-  constructor(data, userId, templateSelector, handleCardClick, putLike, removeLike, popupConfirm, deleteCardApi)
+  constructor(data, userId, templateSelector, handleCardClick, putLike, removeLike, popupConfirm)
    {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._deleteCardApi = deleteCardApi;
+    // this._deleteCardApi = deleteCardApi;
     this._cardId = data._id;
     this._countLikes = data.likes;
     this._userId = userId;
@@ -52,53 +52,40 @@ generateCard() {
  }
  console.log(this._userId);
   if (this._countLikes.find((element) => (this._userId === element._id))) {
-    this._likeButton.classList.add('.grid-item__like_active');
+    this._likeActive();
   } else {
-    this._likeButton.classList.remove('.grid-item__like_active');
+    this._removeLike();
   }
 return this._element;
 };
 
 likeActive() {
   this._likeButton.classList.add('grid-item__like_active');
-  this._counter = this._counter + 1;
-  this._numberLikes.textContent = this._counter;
+  // this._counter = this._counter + 1;
+  // this._numberLikes.textContent = this._counter;
 }
 
-disLike() {
+removeLike() {
   this._likeButton.classList.remove('grid-item__like_active');
-  this._counter = this._counter - 1;
-  this._numberLikes.textContent = this._counter;
+  // this._counter = this._counter - 1;
+  // this._numberLikes.textContent = this._counter;
+}
+
+likeCount(res) {
+  this._numberLikes.textContent = `${res.likes.length}`;
 }
 
 rmeoveCard() {
-  this._deleteCardApi(this._cardId);
   this._element.remove();
 }
-
-getIdCard() {
-  return this._cardId;
-}
-getOwnerId() {
-  return this._ownerId;
- }
-
- getUserId() {
-  return this._userId;
- }
-
-//  getMyID(id) {
-//   this._myId =id;
-//   return this._myId;
-// }
 
  //  // pics from JS
 _setEventListeners() {
   this._likeButton.addEventListener('click', () => {
     if (this._likeButton.classList.contains('grid-item__like_active')) {
-      this.disLike();
+      this._removeLike();
     } else {
-      this.likeActive()
+      this._putLike()
     }
   });
 

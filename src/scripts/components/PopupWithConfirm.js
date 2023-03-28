@@ -13,13 +13,13 @@ export class PopupWithConfirm extends Popup {
   }
 
   waitSubmitButton() {
-    this._saveButton.textConent = "Сохранение...";
+    this._saveButton.textConent = "Удаление...";
     this._saveButton.disabled = true;
   }
 
   resetWaitSubmitButton() {
+    this._saveButton.textConent = 'Удалить';
     this._saveButton.disabled = false;
-    this._saveButton.textConent = 'Сохранить';
   }
 
   setEventListeners() {

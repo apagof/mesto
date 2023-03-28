@@ -35,18 +35,18 @@ deleteCard(cardId) {
 
 // поставить лайк
 likeCard(cardId) {
-  return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
     method: 'PUT',
-    headers: this._headers,
+    headers: this._headers
   })
   .then(response => this._checkRequestResult(response))
   .catch(error => this._errorHandler(error));
 }
 // Убрать лайк с карты
 unlikeCard(cardId) {
-  return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
     method: 'DELETE',
-    headers: this._headers,
+    headers: this._headers
   })
   .then(response => this._checkRequestResult(response))
   .catch(error => this._errorHandler(error));
