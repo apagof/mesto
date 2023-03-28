@@ -1,6 +1,7 @@
 
 export class Card {
-  constructor(data, userId, templateSelector, handleCardClick, deleteCardApi, popupConfirm) {
+  constructor(data, userId, templateSelector, handleCardClick, putLike, removeLike, popupConfirm, deleteCardApi)
+   {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -8,11 +9,11 @@ export class Card {
     this._deleteCardApi = deleteCardApi;
     this._cardId = data._id;
     this._countLikes = data.likes;
-    // this._myId = myId;
     this._userId = userId;
     this._ownerId = data.owner._id;
-    // this._popupConfirm = document.querySelector('.popup_type_confirm');
     this._popupConfirm = popupConfirm;
+    this._putLike = putLike;
+    this._removeLike = removeLike;
   };
 
   _getTemplate() {
@@ -26,6 +27,7 @@ export class Card {
  };
 
 generateCard() {
+
   this._element = this._getTemplate();
   this._cardName = this._element.querySelector('.grid-item__name');
   this._image = this._element.querySelector('.grid-item__image');
@@ -84,6 +86,11 @@ getOwnerId() {
  getUserId() {
   return this._userId;
  }
+
+//  getMyID(id) {
+//   this._myId =id;
+//   return this._myId;
+// }
 
  //  // pics from JS
 _setEventListeners() {

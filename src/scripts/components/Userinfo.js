@@ -17,8 +17,8 @@ export class UserInfo {
     this._aboutInput.textContent = profession;
   };
 
-setAvatar(url){
-  this.avatar.src = url.avatar;
+setAvatar(data){
+  this.avatar.src = data.avatar;
 }
 }
 
