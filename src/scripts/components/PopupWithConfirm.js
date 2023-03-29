@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 export class PopupWithConfirm extends Popup {
-  constructor(popupSelector, {submitFormHandler}) {
+  constructor(popupSelector, { submitFormHandler }) {
     super(popupSelector);
     this._submitFormHandler = submitFormHandler;
   }
@@ -18,13 +18,13 @@ export class PopupWithConfirm extends Popup {
 
   resetWaitSubmitButton() {
     this._submitButton.disabled = false;
-    this._submitButton.textConent = 'Сохранить';
+    this._submitButton.textConent = "Сохранить";
   }
 
   setEventListeners() {
     super.setEventListeners();
 
-    this._popup.addEventListener('submit', (evt) => {
+    this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._submitFormHandler(this._itemId, this._item);
     });
