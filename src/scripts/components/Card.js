@@ -4,16 +4,15 @@ export class Card {
    {
     this._name = data.name;
     this._link = data.link;
+    this._countLikes = data.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    // this._deleteCardApi = deleteCardApi;
     this._cardId = data._id;
-    this._countLikes = data.likes;
     this._userId = userId;
     this._ownerId = data.owner._id;
-    this._popupConfirm = popupConfirm;
     this._putLike = putLike;
     this._removeLike = removeLike;
+    this._popupConfirm = popupConfirm;
   };
 
   _getTemplate() {
@@ -32,8 +31,8 @@ generateCard() {
   this._cardName = this._element.querySelector('.grid-item__name');
   this._image = this._element.querySelector('.grid-item__image');
   this._likeButton = this._element.querySelector('.grid-item__like');
-  this._deleteButton = this._element.querySelector('.grid-item__delete-btn');
   this._numberLikes = this._element.querySelector('.grid-item__like-counter');
+  this._deleteButton = this._element.querySelector('.grid-item__delete-btn');
 
   this._image.src = this._link; // присваиваем  ссылку
   this._cardName.textContent = this._name; // присваиваем  имя
@@ -52,9 +51,9 @@ generateCard() {
  }
  console.log(this._userId);
   if (this._countLikes.find((element) => (this._userId === element._id))) {
-    this._likeActive();
+    this.likeActive();
   } else {
-    this._removeLike();
+    this.removeLike();
   }
 return this._element;
 };

@@ -35,7 +35,7 @@ deleteCard(cardId) {
 
 // поставить лайк
 likeCard(cardId) {
-  return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+  return fetch(`https://mesto.nomoreparties.co/v1/cohort-62/cards/${cardId}/likes`, {
     method: 'PUT',
     headers: this._headers
   })
@@ -44,7 +44,7 @@ likeCard(cardId) {
 }
 // Убрать лайк с карты
 unlikeCard(cardId) {
-  return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+  return fetch(`https://mesto.nomoreparties.co/v1/cohort-62/cards/${cardId}/likes`, {
     method: 'DELETE',
     headers: this._headers
   })
