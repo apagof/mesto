@@ -25,7 +25,7 @@ _hideInputError(inputElement) {
   this._errorElement.classList.remove(this._popupError);
   inputElement.classList.remove(this._inputError);
   this._errorElement.textContent = '';
-};
+  };
 
 // Проверяем валидность поля
 _isValid (inputElement) {

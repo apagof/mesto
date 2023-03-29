@@ -1,6 +1,6 @@
 import {Card} from "../scripts/components/Card.js";
 import {FormValidator} from "../scripts/components/FormValidator.js";
-import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar, editAvatarButton, popupFormAdd} from "../scripts/utils/constants.js";
+import {formValidationConfig, inputName, inputProf, editForm, addButton, cardsContainer, formAdd, profileName, profileJob, profileAvatar, editAvatarButton, popupFormAdd, popupAvatarEdit} from "../scripts/utils/constants.js";
 import "./index.css";
 import {Section} from "../scripts/components/Section.js";
 import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
@@ -103,8 +103,10 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
   submitFormHandler: (formData) => {
     popupEditAvatar.waitSubmitButton('Сохранение...');
     api.editAvatar(formData.link)
+
     .then((data) => {
-      console.log(data);
+      console.log(formData);
+
       userInfo.setAvatar(data);
       popupEditAvatar.close();
     })

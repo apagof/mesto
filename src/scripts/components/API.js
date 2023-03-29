@@ -62,7 +62,7 @@ getUserInfo() {
 
 // Редактировать данные пользователя
 editUserInfo(data) {
-  return fetch(`${this._baseUrl}/users/me`, {
+  return fetch(`https://mesto.nomoreparties.co/v1/cohort-62/users/me`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({

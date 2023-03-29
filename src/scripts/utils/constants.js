@@ -14,7 +14,8 @@ const inputLink = document.querySelector('.popup__input_type_link');
 const cardTemplate = '#card-template';
 const popupConfirmSelector = document.querySelector('.popup_type_confirm');
 const popupAvatarInput = document.querySelector('.popup__input_name_link-avatar');
-const popupFormAdd = document.querySelector('.popup__form-add');
+const popupFormAdd = document.querySelector('.popup__form-edit');
+const popupAvatarEdit = document.querySelector('.popup_type_avatar');
 const editAvatarButton = document.querySelector('.profile__avatar-button');
 
 
@@ -28,4 +29,4 @@ const formValidationConfig = ({
   inputErrorClass: 'popup__input_type_error'
 });
 
-export {formValidationConfig, inputName, inputProf, profileName, profileJob, inputPlace, editForm, popups, popupAdd, inputLink, addButton, cardsContainer, cardTemplate, formAdd, popupConfirmSelector, profileAvatar, popupAvatarInput, editAvatarButton, popupFormAdd};
+export {formValidationConfig, inputName, inputProf, profileName, profileJob, inputPlace, editForm, popups, popupAdd, inputLink, addButton, cardsContainer, cardTemplate, formAdd, popupConfirmSelector, profileAvatar, popupAvatarInput, editAvatarButton, popupFormAdd, popupAvatarEdit};
