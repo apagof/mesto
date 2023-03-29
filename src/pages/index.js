@@ -101,11 +101,10 @@ function handleCardClick (name, link)  {
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 {
   submitFormHandler: (formData) => {
-    popupEditAvatar.waitSubmitButton('Сохранение...');
-    api.editAvatar(formData.link)
+    popupEditAvatar.waitSubmitButton();
 
+    api.editAvatar(formData.link)
     .then((data) => {
-      console.log(formData);
 
       userInfo.setAvatar(data);
       popupEditAvatar.close();
@@ -114,7 +113,7 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
       console.log(`Ошибка: ${err}`)
     })
     .finally(() => {
-      popupEditAvatar.resetWaitSubmitButton();
+      popupEditAvatar.resetSubmitButton();
     })
   }});
 
@@ -123,9 +122,11 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 const popupEdit = new PopupWithForm('.popup_type_edit',
 {
   submitFormHandler: (formData) => {
-    popupEdit.waitSubmitButton('Сохранение...');
+    popupEdit.waitSubmitButton();
+
     api.editUserInfo(formData)
      .then(() => {
+
       userInfo.setUserInfo(formData);
       api.editUserInfo(formData)
     })
@@ -136,7 +137,7 @@ const popupEdit = new PopupWithForm('.popup_type_edit',
     console.log(`Ошибка: ${err}`)
   })
   .finally(() => {
-    popupEdit.resetWaitSubmitButton();
+    popupEdit.resetSubmitButton();
   })
 }
 });
@@ -146,16 +147,16 @@ const popupEdit = new PopupWithForm('.popup_type_edit',
 const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 {
   submitFormHandler: (formData) => {
-    popupAddPlace.waitSubmitButton('Сохранение...');
+    popupAddPlace.waitSubmitButton();
+
     api.addCard(formData)
     .then((data) => {
       cardSection.renderItem((data))
       popupAddPlace.close();
-      placeValidation._disableButton();
     })
     .catch(error => console.log(error))
     .finally(() => {
-      popupAddPlace.resetWaitSubmitButton();
+      popupAddPlace.resetSubmitButton();
     })
     }
 });

@@ -5,6 +5,7 @@ export default class Popup {
     this._inputs = this._popup.querySelectorAll('.popup__input');
     this._form = this._popup.querySelector('.popup__form');
     this._closeButton = this._popup.querySelector('.popup__button-close');
+    this._submitButton = this._popup.querySelector('.popup__button-save');
   };
 
   _handleEscClose = (evt) => {
@@ -28,7 +29,7 @@ open() {
 
 close() {
   this._popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', this._handleEscClose); // удаление слушателя закрытия по Escape
+  document.removeEventListener('keydown', this._handleEscClose);
   this._popup.removeEventListener('click', this._closePopupByClick);
 }
 

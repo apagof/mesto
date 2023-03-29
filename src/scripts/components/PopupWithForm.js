@@ -4,7 +4,6 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, {submitFormHandler} ) {
     super(popupSelector);
     this._submitFormHandler = submitFormHandler;
-    this._submitButton = this._popup.querySelector('.popup__button-save');
   };
 
   _getInputValues() {
@@ -18,13 +17,13 @@ export class PopupWithForm extends Popup {
 
   };
 
-  waitSubmitButton(text) {
-    this._submitButton.textConent = text;
+  waitSubmitButton() {
+    this._submitButton.textContent = 'Сохранение...';
     this._submitButton.disabled = true;
   }
 
-  resetWaitSubmitButton() {
-    this._submitButton.textConent = 'Сохранить';
+  resetSubmitButton() {
+    this._submitButton.textContent = 'Сохранить';
     this._submitButton.disabled = false;
   }
 

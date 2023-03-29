@@ -4,7 +4,6 @@ export class PopupWithConfirm extends Popup {
   constructor(popupSelector, {submitFormHandler}) {
     super(popupSelector);
     this._submitFormHandler = submitFormHandler;
-    this._saveButton = this._popup.querySelector('.popup__button-save');
   }
 
   setItemData(itemId, item) {
@@ -13,13 +12,13 @@ export class PopupWithConfirm extends Popup {
   }
 
   waitSubmitButton() {
-    this._saveButton.textConent = "Удаление...";
-    this._saveButton.disabled = true;
+    this._submitButton.textConent = "Сохранение...";
+    this._submitButton.disabled = true;
   }
 
   resetWaitSubmitButton() {
-    this._saveButton.textConent = 'Сохранить';
-    this._saveButton.disabled = false;
+    this._submitButton.disabled = false;
+    this._submitButton.textConent = 'Сохранить';
   }
 
   setEventListeners() {
