@@ -60,14 +60,12 @@ return this._element;
 
 likeActive() {
   this._likeButton.classList.add('grid-item__like_active');
-  // this._counter = this._counter + 1;
-  // this._numberLikes.textContent = this._counter;
+
 }
 
 removeLike() {
   this._likeButton.classList.remove('grid-item__like_active');
-  // this._counter = this._counter - 1;
-  // this._numberLikes.textContent = this._counter;
+
 }
 
 likeCount(res) {

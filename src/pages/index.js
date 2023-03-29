@@ -18,14 +18,14 @@ const api = new API({
 });
 
 let userId;
-const userInfo = new UserInfo('.profile__name', '.profile__profession');
+const userInfo = new UserInfo('.profile__name', '.profile__profession', '.profile__avatar');
 const editButton = document.querySelector('.profile__edit-button');
 const openBigImage = new PopupWithImage('.popup_type_image-big');
 
 const popupDeleteConfirmation = new PopupWithConfirm ('.popup_type_confirm',
 {
 submitFormHandler: (itemId, card) => {
-  popupDeleteConfirmation.waitSubmitButton();
+  popupDeleteConfirmation.waitSubmitButton('Сохранение...');
   api.deleteCard(itemId)
   .then(() => {
     card.rmeoveCard();
@@ -78,7 +78,6 @@ function putLike(item, card) {
   .then((res) => {
     card.likeCount(res);
     card.likeActive();
-    console.log(res);
   })
   .catch(err => console.log(`Ошибка: ${err}`));
 }
@@ -102,22 +101,27 @@ function handleCardClick (name, link)  {
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
 {
   submitFormHandler: (formData) => {
-    userInfo.setUserInfo(formData);
-    Promise.all([formData, api.editAvatar(formData), popupEditAvatar.waitSubmitButton()])
+    popupEditAvatar.waitSubmitButton('Сохранение...');
+    api.editAvatar(formData.link)
     .then((data) => {
+      console.log(data);
+      userInfo.setAvatar(data);
       popupEditAvatar.close();
-      popupEditAvatar.resetWaitSubmitButton();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`)
     })
+    .finally(() => {
+      popupEditAvatar.resetWaitSubmitButton();
+    })
   }});
+
   popupEditAvatar.setEventListeners();
 
 const popupEdit = new PopupWithForm('.popup_type_edit',
 {
   submitFormHandler: (formData) => {
-    popupEdit.waitSubmitButton();
+    popupEdit.waitSubmitButton('Сохранение...');
     api.editUserInfo(formData)
      .then(() => {
       userInfo.setUserInfo(formData);
@@ -140,7 +144,7 @@ const popupEdit = new PopupWithForm('.popup_type_edit',
 const popupAddPlace = new PopupWithForm('.popup_type_add-pic',
 {
   submitFormHandler: (formData) => {
-    popupAddPlace.waitSubmitButton();
+    popupAddPlace.waitSubmitButton('Сохранение...');
     api.addCard(formData)
     .then((data) => {
       cardSection.renderItem((data))
@@ -159,12 +163,13 @@ popupAddPlace.setEventListeners();
 function popupConfirm(itemId, card) {
   popupDeleteConfirmation.open();
   popupDeleteConfirmation.setItemData(itemId, card);
+
 }
 
 // open avatar popup
 const openAvatarPopup = () => {
-  popupEditAvatar.open();
   editValidation.reset();
+  popupEditAvatar.open();
 }
 
 // open profile popup

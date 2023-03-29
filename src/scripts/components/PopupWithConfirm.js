@@ -18,7 +18,7 @@ export class PopupWithConfirm extends Popup {
   }
 
   resetWaitSubmitButton() {
-    this._saveButton.textConent = 'Удалить';
+    this._saveButton.textConent = 'Сохранить';
     this._saveButton.disabled = false;
   }
 

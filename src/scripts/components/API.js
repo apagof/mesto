@@ -75,8 +75,7 @@ editUserInfo(data) {
 }
 // Редактировать аватар
 editAvatar(link) {
-  console.log(link);
-  return fetch(`${this._baesUrl}/users/me/avatar`, {
+  return fetch(`https://mesto.nomoreparties.co/v1/cohort-62/users/me/avatar`, {
     method: "PATCH",
     headers: this._headers,
     body: JSON.stringify({
