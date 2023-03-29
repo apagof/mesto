@@ -22,7 +22,7 @@
 @import url(../blocks/popup/__input/_type/_avatar/popup__input_type_avatar.css);
 @import url(../blocks/popup/_type/_confirm/popup_type_confirm.css);
 @import url(../blocks/popup/__confirm/popup__confirm.css);
-@import url(../blocks/popup/__confirm/_button-save/popup__confirm_save.css);
+@import url(../blocks/popup/__confirm-button/popup__confirm-button.css);
 @import url(../blocks/popup/__input/_type/_name/popup__input_type_name.css);
 @import url(../blocks/popup/__input/_type/_profession/popup__input_type_profession.css);
 @import url(../blocks/grid-item/__like-container/grid-item__like-container.css);
