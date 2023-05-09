@@ -28,3 +28,5 @@
 <li>В терминале скачать модули - npm i</li>
 <li>Запустить дев версию с локальным сервером - npm run dev</li>
 <li>Сделать продакшн билд - npm run build</li>
+
+<h3> Ссылка на проект: https://apagof.github.io/mesto/ </h3>
